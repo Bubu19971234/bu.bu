@@ -1,0 +1,30 @@
+node_modules/
+.pnpm-store/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# env — never commit real secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# next
+apps/web/.next/
+apps/web/next-env.d.ts
+.vercel
+
+# expo
+apps/mobile/.expo/
+apps/mobile/ios/
+apps/mobile/android/
+apps/mobile/expo-env.d.ts
+apps/mobile/dist/
+
+# supabase
+supabase/.branches
+supabase/.temp
+
+.DS_Store

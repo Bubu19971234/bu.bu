@@ -1,0 +1,27 @@
+{
+  "name": "football-talent-network",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @ftn/web dev",
+    "dev:mobile": "pnpm --filter @ftn/mobile start",
+    "lint": "pnpm -r --parallel run lint",
+    "typecheck": "pnpm -r --parallel run typecheck",
+    "test": "pnpm -r run test",
+    "test:db": "pnpm --filter @ftn/db-tests test",
+    "build:web": "pnpm --filter @ftn/web build",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build:web",
+    "check:secrets": "node scripts/check-client-secrets.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.6",
+    "eslint-plugin-react-hooks": "^7.1.0",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.0"
+  }
+}
