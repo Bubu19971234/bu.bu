@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Carosello Scart Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14213d;
+    --paper: #fbf7f0;
+    --accent: #e8a33d;
+    --muted: #5b6475;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #ddd; font-family: Inter, system-ui, sans-serif; }
+  .card {
+    width: 1080px; height: 1080px; padding: 96px;
+    background: var(--paper); color: var(--ink);
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden; margin-bottom: 20px;
+  }
+  .card.dark { background: var(--ink); color: var(--paper); }
+  .card.dark .sub { color: #c9cfdb; }
+  .tag { font-size: 28px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 92px; line-height: 1.02; font-weight: 800; letter-spacing: -.02em; }
+  h2 { font-size: 72px; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+  .sub { font-size: 38px; line-height: 1.35; color: var(--muted); max-width: 860px; }
+  ul { list-style: none; display: grid; gap: 28px; }
+  li { font-size: 40px; line-height: 1.25; padding-left: 56px; position: relative; }
+  li::before { content: ""; position: absolute; left: 0; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 28px; font-weight: 600; }
+  .brand { letter-spacing: .04em; }
+  .pager { color: var(--accent); }
+  .num { font-size: 260px; font-weight: 800; line-height: .9; color: var(--accent); }
+  .cta { display: inline-block; background: var(--accent); color: var(--ink); font-size: 44px; font-weight: 800; padding: 28px 48px; border-radius: 16px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Gancio -->
+<section class="card dark" id="c1">
+  <div class="tag">Produttori toscani</div>
+  <div>
+    <h1>Il tuo marchio su Amazon:<br>chi lo vende davvero?</h1>
+    <p class="sub" style="margin-top:40px">Spesso non è l'azienda: è un rivenditore che decide prezzo, foto e descrizione.</p>
+  </div>
+  <div class="foot"><span class="brand">SCART UP</span><span class="pager">Scorri →</span></div>
+</section>
+
+<!-- 2. Problema -->
+<section class="card" id="c2">
+  <div class="tag">Il problema</div>
+  <div>
+    <h2>Se non lo gestisci tu, lo gestisce un altro</h2>
+    <ul style="margin-top:56px">
+      <li>Prezzo deciso da terzi</li>
+      <li>Foto e testi che non ti rappresentano</li>
+      <li>Recensioni e clienti che non sono tuoi</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">SCART UP</span><span class="pager">2 / 6</span></div>
+</section>
+
+<!-- 3. Servizio Amazon -->
+<section class="card" id="c3">
+  <div class="tag">Servizio 1 · Amazon</div>
+  <div>
+    <h2>Ti portiamo su Amazon con il tuo nome</h2>
+    <ul style="margin-top:56px">
+      <li>Apertura account e registro del marchio</li>
+      <li>Schede prodotto, foto e testi</li>
+      <li>Logistica Amazon e gestione ordini</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">SCART UP</span><span class="pager">3 / 6</span></div>
+</section>
+
+<!-- 4. Servizio Ads -->
+<section class="card" id="c4">
+  <div class="tag">Servizio 2 · Pubblicità</div>
+  <div>
+    <h2>Campagne che portano vendite, non solo clic</h2>
+    <ul style="margin-top:56px">
+      <li>Amazon Ads sui tuoi prodotti</li>
+      <li>Meta e Google Ads</li>
+      <li>Report mensile con margine per prodotto</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">SCART UP</span><span class="pager">4 / 6</span></div>
+</section>
+
+<!-- 5. Servizio Social -->
+<section class="card" id="c5">
+  <div class="tag">Servizio 3 · Social</div>
+  <div>
+    <h2>Instagram e Facebook gestiti per te</h2>
+    <ul style="margin-top:56px">
+      <li>Piano editoriale e contenuti</li>
+      <li>Sponsorizzate sul territorio</li>
+      <li>Un unico referente, a pochi km da te</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">SCART UP</span><span class="pager">5 / 6</span></div>
+</section>
+
+<!-- 6. Natale + CTA -->
+<section class="card dark" id="c6">
+  <div class="tag">Natale 2026</div>
+  <div>
+    <div class="num">15/11</div>
+    <h2 style="margin-top:24px">Le schede devono essere online entro metà novembre</h2>
+    <p class="sub" style="margin-top:32px">Analisi gratuita: ti mostriamo chi vende oggi il tuo marchio su Amazon e a che prezzo.</p>
+  </div>
+  <div class="foot"><span class="cta">Richiedi l'analisi</span><span class="brand">SCART UP</span></div>
+</section>
+
+</body>
+</html>
