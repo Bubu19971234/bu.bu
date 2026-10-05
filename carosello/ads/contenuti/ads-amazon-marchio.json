@@ -1,0 +1,63 @@
+{
+  "slug": "ads-amazon-marchio",
+  "titolo_interno": "ADS · Gestione Amazon + ads + social (pacchetto 700 €/mese)",
+  "stile": "B",
+  "slides": [
+    {
+      "tipo": "cover",
+      "occhiello": "Scart Up · produttori toscani",
+      "titolo": "Il tuo marchio su Amazon forse lo vende [[un altro]].",
+      "piede": "controlla in 10 secondi →"
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "Il costo nascosto",
+      "titolo": "Prezzo, foto, descrizione: [[decide lui]].",
+      "sub": "Chi cerca il tuo nome compra da lui. Il cliente e il margine restano suoi, non tuoi."
+    },
+    {
+      "tipo": "prova",
+      "occhiello": "L'ho verificato",
+      "titolo": "Succede anche a marchi toscani noti.",
+      "sub": "Ho cercato su amazon.it più di 30 produttori tra Pistoia, Prato ed Empoli. La maggior parte non c'è. Diversi li vende qualcun altro."
+    },
+    {
+      "tipo": "pipeline",
+      "occhiello": "Come funziona",
+      "titolo": "Il tuo negozio Amazon, gestito.",
+      "passi": [
+        "Registro marchio",
+        "Schede e foto",
+        "Ads e social"
+      ],
+      "sub": "Account a nome tuo, schede fatte bene, pubblicità e social. Un solo referente, a pochi km da te."
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "E da me come si fa?",
+      "titolo": "Cerca il tuo marchio su amazon.it.",
+      "sub": "Apri la scheda e guarda «Venduto da». Se non c'è il tuo nome, il problema è questo."
+    },
+    {
+      "tipo": "cta",
+      "occhiello": "Natale 2026",
+      "titolo": "Schede online entro il [[15 novembre]]?",
+      "azione": "Analisi gratuita ↓"
+    }
+  ],
+  "ads": {
+    "testo_principale": "Produci in Toscana e hai un marchio tuo? Cerca il tuo prodotto su amazon.it e guarda «Venduto da»: spesso non sei tu.\n\nCon Scart Up apri il negozio Amazon a nome tuo e gestisco schede, pubblicità e social. Per vendere a Natale le schede devono essere online entro metà novembre.\n\nCompila il modulo: ti mando l'analisi gratuita di chi vende oggi il tuo marchio e a che prezzo.",
+    "titolo": "Analisi gratuita del tuo marchio su Amazon",
+    "pulsante": "Richiedi informazioni",
+    "modulo": [
+      "Nome e cognome",
+      "Email di lavoro",
+      "Telefono",
+      "Azienda",
+      "Il tuo marchio è su Amazon? (Sì, lo vendiamo noi / Sì, lo vendono altri / No / Non lo so)",
+      "Sito o nome del prodotto principale"
+    ],
+    "pubblico": "LinkedIn: elenco aziende produttori (Pistoia, Prato, Empolese), ruoli titolare/marketing/e-commerce. Meta: 30 km da Monsummano + Empoli e Prato.",
+    "priorita": 1
+  }
+}

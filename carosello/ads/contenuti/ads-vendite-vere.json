@@ -1,0 +1,56 @@
+{
+  "slug": "ads-vendite-vere",
+  "titolo_interno": "ADS · Gestione campagne Meta/Google contando solo le vendite",
+  "stile": "B",
+  "slides": [
+    {
+      "tipo": "cover",
+      "occhiello": "Scart Up · per chi fa pubblicità",
+      "titolo": "La pubblicità che paghi forse non ha [[mai venduto]] niente.",
+      "piede": "fai il test →"
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "Il costo nascosto",
+      "titolo": "«Conversioni» ovunque. Sul conto, niente.",
+      "sub": "Il pannello conta visite, clic e carrelli come se fossero vendite. E tu alzi il budget su quello che sembra funzionare."
+    },
+    {
+      "tipo": "prova",
+      "occhiello": "La prova",
+      "titolo": "Il ritorno vero era [[la metà]].",
+      "sub": "In un e-commerce reale, contando solo gli acquisti, il ritorno della pubblicità era la metà di quello che diceva il pannello."
+    },
+    {
+      "tipo": "checklist",
+      "occhiello": "3 controlli da fare oggi",
+      "titolo": "Le tue campagne passano il test?",
+      "voci": [
+        "Le «conversioni» contano solo gli acquisti?",
+        "Conosci il margine per prodotto, non solo il fatturato?",
+        "Sai a che ritorno vai in pari?"
+      ]
+    },
+    {
+      "tipo": "cta",
+      "occhiello": "Anche solo un no?",
+      "titolo": "Vuoi sapere quanto ti rende [[davvero]]?",
+      "azione": "Controllo gratuito ↓"
+    }
+  ],
+  "ads": {
+    "testo_principale": "Se il pannello di Meta o Google dice «conversioni», non vuol dire vendite. Spesso conta visite e carrelli.\n\nIn un e-commerce reale, contando solo gli acquisti, il ritorno vero era la metà di quello dichiarato.\n\nTi faccio un controllo gratuito delle tue campagne: ti dico quante vendite portano davvero e su cosa stai buttando budget.",
+    "titolo": "Controllo gratuito delle tue campagne",
+    "pulsante": "Richiedi informazioni",
+    "modulo": [
+      "Nome e cognome",
+      "Email di lavoro",
+      "Telefono",
+      "Azienda",
+      "Dove fai pubblicità? (Meta / Google / Amazon / Altro)",
+      "Quanto spendi al mese? (meno di 500 € / 500-2.000 € / oltre 2.000 €)"
+    ],
+    "pubblico": "Meta: 30 km da Monsummano + Empoli e Prato, titolari di piccole imprese, interesse e-commerce/pubblicità online. Escludere chi è già cliente.",
+    "priorita": 2
+  }
+}

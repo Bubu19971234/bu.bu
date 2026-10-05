@@ -1,0 +1,61 @@
+{
+  "slug": "ads-ospitalita",
+  "titolo_interno": "ADS · Check-in ospiti + risposte WhatsApp (hotel, B&B, affitti)",
+  "stile": "B",
+  "slides": [
+    {
+      "tipo": "cover",
+      "occhiello": "Scart Up · hotel e B&B",
+      "titolo": "Rispondi ancora a mano a «a che ora è il [[check‑in]]?»",
+      "piede": "anche di notte →"
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "La scena",
+      "titolo": "Le stesse dieci domande, ogni giorno.",
+      "sub": "Orari, parcheggio, documenti, colazione, Wi-Fi. Sempre le stesse, anche mentre sei alla reception con un altro ospite."
+    },
+    {
+      "tipo": "pipeline",
+      "occhiello": "Come funziona",
+      "titolo": "L'ospite fa da [[solo]].",
+      "passi": [
+        "Prenota",
+        "Riceve il link",
+        "Check-in e risposte"
+      ],
+      "sub": "Documenti caricati prima dell'arrivo, risposte su WhatsApp alle domande di sempre. Le richieste vere arrivano a te."
+    },
+    {
+      "tipo": "checklist",
+      "occhiello": "Cosa cambia",
+      "titolo": "Tu gestisci solo le eccezioni.",
+      "voci": [
+        "Check-in online prima dell'arrivo",
+        "Risposte automatiche su WhatsApp",
+        "Le domande nuove passano a te"
+      ]
+    },
+    {
+      "tipo": "cta",
+      "occhiello": "Ne hai bisogno?",
+      "titolo": "Vuoi un check-in che si fa da [[solo]]?",
+      "azione": "Ti mostro come ↓"
+    }
+  ],
+  "ads": {
+    "testo_principale": "Orari, parcheggio, documenti, colazione: le stesse domande ogni giorno, anche di notte.\n\nCon Scart Up l'ospite fa il check-in online prima di arrivare e riceve su WhatsApp le risposte alle domande di sempre. A te arrivano solo le richieste vere.\n\nLascia il contatto: ti mostro come funzionerebbe nella tua struttura, in 20 minuti.",
+    "titolo": "Il check-in che si fa da solo",
+    "pulsante": "Richiedi informazioni",
+    "modulo": [
+      "Nome e cognome",
+      "Email di lavoro",
+      "Telefono",
+      "Azienda",
+      "Tipo di struttura (Hotel / B&B / Affitti brevi / Altro)",
+      "Quante camere o unità?"
+    ],
+    "pubblico": "Meta: 15 km da Montecatini Terme (Montecatini, Monsummano, Pescia, Pieve a Nievole), interessi Booking/Airbnb host, gestione alberghiera.",
+    "priorita": 2
+  }
+}

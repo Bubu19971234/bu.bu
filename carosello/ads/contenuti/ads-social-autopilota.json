@@ -1,0 +1,56 @@
+{
+  "slug": "ads-social-autopilota",
+  "titolo_interno": "ADS · Social gestiti / auto-poster",
+  "stile": "B",
+  "slides": [
+    {
+      "tipo": "cover",
+      "occhiello": "Scart Up · social",
+      "titolo": "La tua pagina è [[ferma]] da mesi?",
+      "piede": "non sei il solo →"
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "Non è colpa tua",
+      "titolo": "Non è pigrizia.",
+      "sub": "Dodici post buoni al mese, ogni mese, sono un lavoro vero. Solo che non è il tuo lavoro."
+    },
+    {
+      "tipo": "pipeline",
+      "occhiello": "Come funziona",
+      "titolo": "Tre agenti in fila.",
+      "passi": [
+        "Scrive",
+        "Impagina",
+        "Pubblica"
+      ],
+      "sub": "Dai tuoi casi veri, con la tua grafica, su Instagram e Facebook."
+    },
+    {
+      "tipo": "prova",
+      "occhiello": "La prova",
+      "titolo": "I post di @scartapp escono così.",
+      "sub": "Testo, grafica e pubblicazione partono dallo stesso sistema che ti propongo."
+    },
+    {
+      "tipo": "cta",
+      "occhiello": "E da te?",
+      "titolo": "Vuoi che la [[tua]] pagina si scriva da sola?",
+      "azione": "Parliamone ↓"
+    }
+  ],
+  "ads": {
+    "testo_principale": "Dodici post buoni al mese sono un lavoro vero. Per questo le pagine delle aziende si fermano.\n\nCon Scart Up tre agenti scrivono, impaginano e pubblicano i tuoi post su Instagram e Facebook, partendo dai tuoi casi veri. Tu approvi.\n\nLascia il contatto: ti mostro i primi tre post per la tua pagina.",
+    "titolo": "La tua pagina, attiva senza scriverla tu",
+    "pulsante": "Richiedi informazioni",
+    "modulo": [
+      "Nome e cognome",
+      "Email di lavoro",
+      "Telefono",
+      "Azienda",
+      "Link alla tua pagina Instagram o Facebook"
+    ],
+    "pubblico": "Meta: 30 km da Monsummano, titolari di piccole imprese e negozi.",
+    "priorita": 3
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "ads-ecommerce-automatico",
+  "titolo_interno": "ADS · Automazioni e-commerce (foto, scorte, spedizioni, dati)",
+  "stile": "B",
+  "slides": [
+    {
+      "tipo": "cover",
+      "occhiello": "Scart Up · e-commerce",
+      "titolo": "Vendi online. Ma passi la giornata a [[copiare dati]].",
+      "piede": "ti ritrovi? →"
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "La scena",
+      "titolo": "Foto, scorte, etichette, gestionale.",
+      "sub": "Rifai le foto per Amazon, allinei le giacenze a mano, copi gli indirizzi per le spedizioni. Ogni giorno, sempre uguale."
+    },
+    {
+      "tipo": "testo",
+      "occhiello": "Il costo nascosto",
+      "titolo": "Ogni errore è un [[ordine perso]].",
+      "sub": "Una scorta non aggiornata e vendi una cosa che non hai. Un indirizzo copiato male e il pacco torna indietro."
+    },
+    {
+      "tipo": "checklist",
+      "occhiello": "Cosa automatizzo",
+      "titolo": "Lo fa un agente, non tu.",
+      "voci": [
+        "Foto a norma Amazon, in blocco",
+        "Scorte allineate tra sito e Amazon",
+        "Etichette e tracking senza copia-incolla",
+        "Dati nel gestionale in automatico"
+      ]
+    },
+    {
+      "tipo": "cta",
+      "occhiello": "Da dove parto?",
+      "titolo": "Qual è il lavoro che ti ruba più [[tempo]]?",
+      "azione": "Dimmelo qui ↓"
+    }
+  ],
+  "ads": {
+    "testo_principale": "Foto da rifare per Amazon, scorte da allineare, etichette da compilare, dati da ricopiare nel gestionale. Ogni giorno.\n\nSono lavori ripetitivi: li può fare un agente al posto tuo, senza errori di copia-incolla.\n\nDimmi qual è il lavoro che ti ruba più tempo: ti rispondo con come lo automatizzerei e quanto tempo ti libera.",
+    "titolo": "Il lavoro ripetitivo lo fa un agente",
+    "pulsante": "Richiedi informazioni",
+    "modulo": [
+      "Nome e cognome",
+      "Email di lavoro",
+      "Telefono",
+      "Azienda",
+      "Cosa ti ruba più tempo? (Foto prodotto / Scorte / Spedizioni / Dati nel gestionale / Altro)",
+      "Dove vendi? (Sito / Amazon / Negozio / Altro)"
+    ],
+    "pubblico": "Meta: 30 km da Monsummano + Empoli e Prato, interessi Shopify/WooCommerce/Amazon Seller, titolari di piccole imprese.",
+    "priorita": 3
+  }
+}
