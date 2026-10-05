@@ -3,7 +3,8 @@
 Annuncio carosello (6 card 1080×1080) con modulo contatti nativo.
 Obiettivo: 2-3 produttori con marchio proprio entro ~30 km da Monsummano (fino a Empoli e Prato), pacchetto 700 €/mese.
 
-- `cards.html` — sorgente grafica delle card (modifica qui testi e colori)
+- `cards.html` — sorgente grafica delle card, stile Scart Up direzione B (cover viola, interni bianchi, verde evidenziatore, Poppins)
+- `fonts/` — Poppins in locale (licenza OFL), così il rendering non dipende da Google Fonts
 - `render.mjs` — rigenera i PNG: `node carosello/render.mjs`
 - `png/card-1.png … card-6.png` — immagini pronte da caricare
 
@@ -11,12 +12,12 @@ Obiettivo: 2-3 produttori con marchio proprio entro ~30 km da Monsummano (fino a
 
 | # | Titolo | Ruolo |
 |---|--------|-------|
-| 1 | Il tuo marchio su Amazon: chi lo vende davvero? | gancio |
-| 2 | Se non lo gestisci tu, lo gestisce un altro | problema |
-| 3 | Ti portiamo su Amazon con il tuo nome | servizio Amazon |
-| 4 | Campagne che portano vendite, non solo clic | servizio Ads |
-| 5 | Instagram e Facebook gestiti per te | servizio Social |
-| 6 | 15/11 — schede online entro metà novembre | scadenza + CTA |
+| 1 | Il tuo marchio su Amazon forse lo vende un altro. | gancio (cover viola) |
+| 2 | Prezzo, foto, descrizione: decide lui. | il costo nascosto |
+| 3 | Registri il marchio. La scheda torna tua. | la soluzione, tecnica |
+| 4 | Ads e social, un solo referente. | oltre Amazon |
+| 5 | Cerca il tuo marchio su amazon.it. | e da me come si fa? |
+| 6 | Schede online entro il 15 novembre. | CTA (cover inchiostro) |
 
 ## Testo dell'annuncio
 
@@ -58,5 +59,5 @@ Obbligatori: link all'informativa privacy di Scart Up (senza non si pubblica) e 
 
 - [ ] Account pubblicitario intestato a Scart Up, non quello di CDB
 - [ ] Informativa privacy online (URL)
-- [ ] Logo e colori di Scart Up al posto del testo «SCART UP» nelle card
+- [ ] Sostituire il segnaposto «su» con il logo vero di Scart Up (SVG)
 - [ ] Ogni contatto del modulo va chiamato entro 48 ore

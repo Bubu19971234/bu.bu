@@ -12,6 +12,7 @@ mkdirSync(out, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1080 } });
 await page.goto(pathToFileURL(join(here, 'cards.html')).href, { waitUntil: 'networkidle' });
+await page.evaluate(() => document.fonts.ready);
 
 const cards = await page.$$('section.card');
 for (const [i, card] of cards.entries()) {

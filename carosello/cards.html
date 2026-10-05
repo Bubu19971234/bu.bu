@@ -3,115 +3,130 @@
 <head>
 <meta charset="utf-8">
 <title>Carosello Scart Up</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- Stile Scart Up, direzione B: cover a blocco viola, interni bianchi, verde come evidenziatore -->
 <style>
+  @font-face { font-family: Poppins; font-weight: 500; src: url(fonts/poppins-latin-500-normal.woff2) format("woff2"); }
+  @font-face { font-family: Poppins; font-weight: 600; src: url(fonts/poppins-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: Poppins; font-weight: 700; src: url(fonts/poppins-latin-700-normal.woff2) format("woff2"); }
+  @font-face { font-family: Poppins; font-weight: 800; src: url(fonts/poppins-latin-800-normal.woff2) format("woff2"); }
   :root {
-    --ink: #14213d;
-    --paper: #fbf7f0;
-    --accent: #e8a33d;
-    --muted: #5b6475;
+    --su-purple: #4718B8;
+    --su-ink: #1B1140;
+    --su-green: #8BC63F;
+    --su-green-deep: #5E8B1E;
+    --su-lilac: #F2EEFC;
+    --su-mute: #6B6392;
+    --hair: rgba(40,20,90,.12);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #ddd; font-family: Inter, system-ui, sans-serif; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #E9E4F4; font-family: Poppins, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   .card {
-    width: 1080px; height: 1080px; padding: 96px;
-    background: var(--paper); color: var(--ink);
-    display: flex; flex-direction: column; justify-content: space-between;
-    position: relative; overflow: hidden; margin-bottom: 20px;
+    width: 1080px; height: 1080px; padding: 96px 88px; margin-bottom: 20px;
+    position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 44px;
+    background: #fff; color: var(--su-ink);
   }
-  .card.dark { background: var(--ink); color: var(--paper); }
-  .card.dark .sub { color: #c9cfdb; }
-  .tag { font-size: 28px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-  h1 { font-size: 92px; line-height: 1.02; font-weight: 800; letter-spacing: -.02em; }
-  h2 { font-size: 72px; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
-  .sub { font-size: 38px; line-height: 1.35; color: var(--muted); max-width: 860px; }
-  ul { list-style: none; display: grid; gap: 28px; }
-  li { font-size: 40px; line-height: 1.25; padding-left: 56px; position: relative; }
-  li::before { content: ""; position: absolute; left: 0; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
-  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 28px; font-weight: 600; }
-  .brand { letter-spacing: .04em; }
-  .pager { color: var(--accent); }
-  .num { font-size: 260px; font-weight: 800; line-height: .9; color: var(--accent); }
-  .cta { display: inline-block; background: var(--accent); color: var(--ink); font-size: 44px; font-weight: 800; padding: 28px 48px; border-radius: 16px; }
+  .ey { font-size: 34px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--su-purple); }
+  .big { font-size: 96px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.06; text-wrap: balance; }
+  .sub { font-size: 46px; font-weight: 500; line-height: 1.4; color: var(--su-mute); }
+  .sub b { color: var(--su-ink); }
+  .mk { background: var(--su-green); color: #26400a; border-radius: 14px; padding: 0 18px;
+    box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .num { position: absolute; top: 60px; right: 72px; font-size: 32px; font-weight: 700; opacity: .6; }
+  .spacer { flex: 1; }
+  .foot { display: flex; align-items: center; gap: 24px; font-size: 34px; font-weight: 600; color: var(--su-mute); }
+  .minilogo { width: 84px; height: 84px; border-radius: 26px; background: var(--su-purple); color: #fff; position: relative;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 38px; letter-spacing: -1px; flex: 0 0 auto; }
+  .minilogo::after { content: ""; position: absolute; top: 11px; right: 11px; width: 22px; height: 22px; border-radius: 7px; background: var(--su-green); }
+  .pill { align-self: flex-start; font-size: 40px; font-weight: 700; padding: 26px 48px; border-radius: 999px;
+    background: var(--su-green); color: #26400a; }
+
+  /* cover */
+  .cover { background: var(--su-purple); color: #fff; text-align: center; align-items: center; justify-content: space-between; }
+  .cover .ey { color: #CDBEF6; }
+  .cover .big { font-size: 108px; }
+  .cover .foot { color: #D9CCFA; justify-content: center; }
+  .cover .minilogo { background: #fff; color: var(--su-purple); }
+  .cover.ink { background: var(--su-ink); }
+  .cover.ink .ey { color: var(--su-green); }
+  .cover.ink .foot { color: #C9BEEA; }
+  .cover.ink .minilogo { background: var(--su-purple); color: #fff; }
+
+  /* elementi interni */
+  .pipe { display: flex; align-items: center; gap: 20px; }
+  .pipe .st { flex: 1; background: var(--su-lilac); border-radius: 36px; padding: 36px 10px; text-align: center;
+    font-size: 36px; font-weight: 700; line-height: 1.15; color: var(--su-purple); }
+  .pipe .ar { color: var(--su-green-deep); font-weight: 800; font-size: 56px; }
+  .check { display: flex; gap: 32px; align-items: flex-start; font-size: 46px; font-weight: 500; line-height: 1.3; }
+  .tick { width: 64px; height: 64px; border-radius: 20px; background: var(--su-green); color: #26400a; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 38px; margin-top: 2px; }
+  .box { background: var(--su-lilac); border-radius: 40px; padding: 44px 48px; }
 </style>
 </head>
 <body>
 
 <!-- 1. Gancio -->
-<section class="card dark" id="c1">
-  <div class="tag">Produttori toscani</div>
-  <div>
-    <h1>Il tuo marchio su Amazon:<br>chi lo vende davvero?</h1>
-    <p class="sub" style="margin-top:40px">Spesso non è l'azienda: è un rivenditore che decide prezzo, foto e descrizione.</p>
-  </div>
-  <div class="foot"><span class="brand">SCART UP</span><span class="pager">Scorri →</span></div>
+<section class="card cover">
+  <div class="ey">Scart Up · 1/6</div>
+  <div class="big" style="line-height:1.15">Il tuo marchio su Amazon forse lo vende <span class="mk">un altro</span>.</div>
+  <div class="foot"><div class="minilogo">su</div>Scorri →</div>
 </section>
 
-<!-- 2. Problema -->
-<section class="card" id="c2">
-  <div class="tag">Il problema</div>
-  <div>
-    <h2>Se non lo gestisci tu, lo gestisce un altro</h2>
-    <ul style="margin-top:56px">
-      <li>Prezzo deciso da terzi</li>
-      <li>Foto e testi che non ti rappresentano</li>
-      <li>Recensioni e clienti che non sono tuoi</li>
-    </ul>
-  </div>
-  <div class="foot"><span class="brand">SCART UP</span><span class="pager">2 / 6</span></div>
+<!-- 2. Il costo nascosto -->
+<section class="card">
+  <span class="num">2/6</span>
+  <div class="spacer"></div>
+  <div class="ey">Il costo nascosto</div>
+  <div class="big" style="line-height:1.15">Prezzo, foto, descrizione: <span class="mk">decide lui</span>.</div>
+  <div class="sub">E chi cerca il tuo nome compra da lui, non da te. I clienti restano suoi.</div>
+  <div class="spacer"></div>
 </section>
 
-<!-- 3. Servizio Amazon -->
-<section class="card" id="c3">
-  <div class="tag">Servizio 1 · Amazon</div>
-  <div>
-    <h2>Ti portiamo su Amazon con il tuo nome</h2>
-    <ul style="margin-top:56px">
-      <li>Apertura account e registro del marchio</li>
-      <li>Schede prodotto, foto e testi</li>
-      <li>Logistica Amazon e gestione ordini</li>
-    </ul>
+<!-- 3. La soluzione, tecnica -->
+<section class="card">
+  <span class="num">3/6</span>
+  <div class="spacer"></div>
+  <div class="ey" style="color:var(--su-green-deep)">La soluzione, tecnica</div>
+  <div class="big" style="font-size:84px">Registri il marchio. La scheda torna tua.</div>
+  <div class="pipe">
+    <div class="st">Registro<br>marchio</div><span class="ar">→</span>
+    <div class="st">Schede<br>tue</div><span class="ar">→</span>
+    <div class="st">Vendi<br>tu</div>
   </div>
-  <div class="foot"><span class="brand">SCART UP</span><span class="pager">3 / 6</span></div>
+  <div class="sub">Con il marchio registrato su Amazon decidi tu testi e foto, e vendi a nome tuo.</div>
+  <div class="spacer"></div>
 </section>
 
-<!-- 4. Servizio Ads -->
-<section class="card" id="c4">
-  <div class="tag">Servizio 2 · Pubblicità</div>
-  <div>
-    <h2>Campagne che portano vendite, non solo clic</h2>
-    <ul style="margin-top:56px">
-      <li>Amazon Ads sui tuoi prodotti</li>
-      <li>Meta e Google Ads</li>
-      <li>Report mensile con margine per prodotto</li>
-    </ul>
-  </div>
-  <div class="foot"><span class="brand">SCART UP</span><span class="pager">4 / 6</span></div>
+<!-- 4. Oltre Amazon -->
+<section class="card">
+  <span class="num">4/6</span>
+  <div class="spacer"></div>
+  <div class="ey">Oltre Amazon</div>
+  <div class="big" style="font-size:84px;line-height:1.15">Ads e social, <span class="mk">un solo referente</span>.</div>
+  <div class="check"><span class="tick">✓</span>Amazon Ads sui tuoi prodotti</div>
+  <div class="check"><span class="tick">✓</span>Meta e Google Ads, contando solo le vendite vere</div>
+  <div class="check"><span class="tick">✓</span>Instagram e Facebook gestiti da noi</div>
+  <div class="spacer"></div>
 </section>
 
-<!-- 5. Servizio Social -->
-<section class="card" id="c5">
-  <div class="tag">Servizio 3 · Social</div>
-  <div>
-    <h2>Instagram e Facebook gestiti per te</h2>
-    <ul style="margin-top:56px">
-      <li>Piano editoriale e contenuti</li>
-      <li>Sponsorizzate sul territorio</li>
-      <li>Un unico referente, a pochi km da te</li>
-    </ul>
-  </div>
-  <div class="foot"><span class="brand">SCART UP</span><span class="pager">5 / 6</span></div>
+<!-- 5. E da me come si fa? -->
+<section class="card">
+  <span class="num">5/6</span>
+  <div class="spacer"></div>
+  <div class="ey">E da me come si fa?</div>
+  <div class="big" style="font-size:84px">Cerca il tuo marchio su amazon.it.</div>
+  <div class="box sub" style="color:var(--su-ink);font-weight:600">Apri la scheda e guarda <b>«Venduto da»</b>. Se non c'è il tuo nome, il problema è questo.</div>
+  <div class="spacer"></div>
 </section>
 
-<!-- 6. Natale + CTA -->
-<section class="card dark" id="c6">
-  <div class="tag">Natale 2026</div>
-  <div>
-    <div class="num">15/11</div>
-    <h2 style="margin-top:24px">Le schede devono essere online entro metà novembre</h2>
-    <p class="sub" style="margin-top:32px">Analisi gratuita: ti mostriamo chi vende oggi il tuo marchio su Amazon e a che prezzo.</p>
+<!-- 6. CTA -->
+<section class="card cover ink">
+  <div class="ey">Natale 2026</div>
+  <div class="big" style="font-size:92px;line-height:1.2">Schede online entro il <span class="mk">15 novembre</span>.</div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:44px">
+    <div class="sub" style="color:#C9BEEA">Analisi gratuita: chi vende oggi il tuo marchio e a che prezzo.</div>
+    <span class="pill" style="align-self:center">Richiedi l'analisi ↓</span>
   </div>
-  <div class="foot"><span class="cta">Richiedi l'analisi</span><span class="brand">SCART UP</span></div>
+  <div class="foot"><div class="minilogo">su</div>Ti rispondiamo noi</div>
 </section>
 
 </body>
