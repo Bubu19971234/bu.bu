@@ -12,8 +12,8 @@
 - centrodistribuzionebevande.it #1 e #2: `index.html` (home salvata), `ai-som.html`, `ai-som-marginalita.html`, testo "otto lingue".
 
 ## Da fare
-1. **Recuperare TUTTI i file del sito** dal progetto Vercel **cdb-sito** (team_czwHBipBy8FveMtKejtqg8Ud, prj_qLNzT9CsApOYD0Yc8Lmjo5TwTU9S): `assets/`, catalogo.html, contatti.html, chi-siamo.html, servizi.html, blog.html, regali.html, privacy.html, richiedi-accesso.html, assaggi-di-natale.html, ecc. Salvarli nel repo `centrodistribuzionebevande.it` SENZA sovrascrivere index.html, ai-som.html e ai-som-marginalita.html. Il sito era stato pubblicato da sessioni precedenti direttamente su Vercel, senza GitHub.
-2. Solo dopo il punto 1: collegare cdb-sito al repo GitHub (Settings → Git, branch main, preset Other, nessuna build).
+1. FATTO: tutti i file del sito sono in `centrodistribuzionebevande.it` (main), identici al deploy Vercel. Mancavano già online: assets/76e251ff54-gsap.min.js e 8 immagini in assets/ufficio/.
+2. Collegare cdb-sito al repo GitHub (Settings → Git, branch main, preset Other, nessuna build).
 3. Verificare in Marginalità l'inserimento manuale dei prezzi al kg (il sito lo promette).
 4. Allineare la pagina `/attiva` di ai-som-saas (prezzi vecchi: 19,90 €/mese) al listino 300/600/800.
 5. Poi: analisi dei siti AI SOM che l'utente condividerà, allineamento di `sito-web-ai-som.it`, pagamento e installazione semplici.
