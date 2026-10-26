@@ -13,7 +13,7 @@
 
 ## Da fare
 1. FATTO: tutti i file del sito sono in `centrodistribuzionebevande.it` (main), identici al deploy Vercel. Mancavano già online: assets/76e251ff54-gsap.min.js e 8 immagini in assets/ufficio/.
-2. Collegare cdb-sito al repo GitHub (Settings → Git, branch main, preset Other, nessuna build).
+2. FATTO: cdb-sito pubblica da main di centrodistribuzionebevande.it (primo deploy 26/10, ok).
 3. Verificare in Marginalità l'inserimento manuale dei prezzi al kg (il sito lo promette).
 4. Allineare la pagina `/attiva` di ai-som-saas (prezzi vecchi: 19,90 €/mese) al listino 300/600/800.
 5. Poi: analisi dei siti AI SOM che l'utente condividerà, allineamento di `sito-web-ai-som.it`, pagamento e installazione semplici.
