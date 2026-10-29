@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Reel</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0F0F0F;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#fff}
+.scena{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+.scena.on{opacity:1}
+#demo{background:radial-gradient(1100px 800px at 50% 0%,#2a1216 0%,#0F0F0F 65%)}
+#didascalia{position:absolute;top:56px;left:60px;right:60px;height:290px;display:flex;align-items:center;justify-content:center;text-align:center}
+#didascalia p{font-size:76px;font-weight:800;line-height:1.06;letter-spacing:-1.5px;opacity:0;transform:scale(.94);transition:opacity .15s ease,transform .15s ease;position:absolute}
+#didascalia p.on{opacity:1;transform:none;transition:opacity .25s ease .12s,transform .25s cubic-bezier(.2,1.4,.4,1) .12s}
+#didascalia b{color:#E39AA4}
+#didascalia .rosso{color:#FF5A6E}
+.telefono{position:absolute;left:50%;top:380px;width:836px;height:1500px;transform:translateX(-50%);background:#050505;border-radius:90px;padding:28px;box-shadow:0 0 0 4px #2b2b2b,0 40px 120px rgba(0,0,0,.8),0 0 160px rgba(196,60,77,.22)}
+.schermo{width:780px;height:1444px;border-radius:64px;overflow:hidden;position:relative;background:#fff}
+.schermo{background:#0F0F0F!important}
+.schermo iframe{width:390px;height:694px;border:0;transform:scale(2);transform-origin:0 0;display:block;margin-top:56px}
+.notch{position:absolute;left:50%;top:40px;width:200px;height:46px;background:#050505;border-radius:30px;transform:translateX(-50%);z-index:3}
+#etichetta{position:absolute;right:60px;bottom:22px;font-size:26px;color:rgba(255,255,255,.55);letter-spacing:1px}
+#cerchio{position:absolute;border:8px solid #FF5A6E;border-radius:26px;opacity:0;transition:opacity .2s ease;box-shadow:0 0 50px rgba(255,90,110,.7);pointer-events:none;z-index:5}
+#cerchio.on{opacity:1;animation:pulsa .9s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 90px rgba(255,90,110,.95)}}
+#chiusura{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;background:radial-gradient(1200px 900px at 50% 40%,#2a1216 0%,#0F0F0F 70%)}
+.loghi{display:flex;align-items:flex-start;justify-content:center;gap:34px;margin-bottom:80px}
+.loghi .box{width:190px;height:190px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden}
+.loghi .box img{width:100%;height:100%;object-fit:contain}
+.loghi .aisom{display:flex;flex-direction:column;align-items:center;gap:12px}
+.loghi .aisom .box{background:#111;padding:0;border:2px solid #2b2b2b}
+.loghi .x{font-size:56px;color:#E39AA4;line-height:190px}
+.loghi .nome{font-size:34px;font-weight:800}
+.loghi .nome .w{color:#C43C4D}
+#chiusura h2{font-size:94px;line-height:1.08;font-weight:800;letter-spacing:-2px}
+#chiusura h2 .w{color:#C43C4D}
+#chiusura .prod{font-size:40px;color:#C0B0A0;margin-top:40px}
+#chiusura .url{margin-top:80px;font-size:40px;font-weight:700;background:#C43C4D;border-radius:999px;padding:30px 54px}
+#chiusura .piccolo{margin-top:36px;font-size:30px;color:#A89886}
+</style>
+</head>
+<body>
+<section class="scena" id="demo">
+  <div id="didascalia"></div>
+  <div class="telefono"><div class="schermo"><div class="notch"></div><iframe id="app" title="app"></iframe></div></div>
+  <div id="cerchio"></div>
+  <div id="etichetta"></div>
+</section>
+<section class="scena" id="chiusura">
+  <div class="loghi"><div class="box"><img src="logo-cdb.jpg" alt=""></div><span class="x">×</span><div class="aisom"><div class="box"><img src="logo-aisom.png" alt=""></div><span class="nome" id="ch-nome"></span></div></div>
+  <h2 id="ch-titolo"></h2>
+  <p class="prod" id="ch-prod"></p>
+  <p class="url">centrodistribuzionebevande.it</p>
+  <p class="piccolo" id="ch-piccolo"></p>
+</section>
+<script>
+var REEL = {
+  margini: {
+    src: 'http://localhost:8769/food-cost-ristorante.html?strumento=margini',
+    didascalie: [
+      'Il tuo panino a <b>5 €</b>…',
+      '…ti fa <span class="rosso">perdere soldi.</span>',
+      'Affitto, personale, bollette:<br><b>il conto vero</b>',
+      'Il prezzo giusto?<br><b>Te lo calcola lui.</b>',
+      'Cambi il prezzo e<br><b>torni a guadagnare.</b>',
+    ],
+    etichetta: 'Esempio · bar inventato',
+    nome: 'AI Som <span class="w">Margini</span>',
+    chiusura: 'Provalo gratis<br>con i <span class="w">tuoi numeri</span>',
+    prod: 'Il prezzo giusto di ogni piatto e bevanda',
+    piccolo: 'Ristoranti, pizzerie, bar e gelaterie',
+  },
+  sommelier: {
+    src: 'http://localhost:3005/locale/demo/menu',
+    didascalie: [
+      'Il cliente non sa<br><b>che vino ordinare?</b>',
+      'Il menù glielo consiglia.<br><b>Dalla tua carta.</b>',
+      'Turisti?<br><b>Risponde in 8 lingue.</b>',
+      'Nessuna app.<br><b>Solo un QR sul tavolo.</b>',
+    ],
+    etichetta: 'Esempio · trattoria inventata',
+    nome: 'AI <span class="w">Som</span>',
+    chiusura: 'Provalo gratis<br>sulla tua <span class="w">carta vini</span>',
+    prod: 'Il sommelier dentro il tuo menù',
+    piccolo: 'Ristoranti, enoteche e wine bar',
+  },
+}
+var r = REEL[new URLSearchParams(location.search).get('reel') || 'margini']
+document.getElementById('app').src = r.src
+document.getElementById('didascalia').innerHTML = r.didascalie.map(function (t) { return '<p>' + t + '</p>' }).join('')
+document.getElementById('etichetta').textContent = r.etichetta
+document.getElementById('ch-nome').innerHTML = r.nome
+document.getElementById('ch-titolo').innerHTML = r.chiusura
+document.getElementById('ch-prod').textContent = r.prod
+document.getElementById('ch-piccolo').textContent = r.piccolo
+window.scena = function (id) { document.querySelectorAll('.scena').forEach(function (s) { s.classList.toggle('on', s.id === id) }) }
+window.didascalia = function (i) { document.querySelectorAll('#didascalia p').forEach(function (p, k) { p.classList.toggle('on', k === i) }) }
+window.cerchia = function (rect) {
+  var c = document.getElementById('cerchio')
+  if (!rect) { c.classList.remove('on'); return }
+  var sch = document.querySelector('.schermo').getBoundingClientRect()
+  c.style.left = (sch.left + rect.x * 2 - 16) + 'px'; c.style.top = (sch.top + rect.y * 2 - 16) + 'px'
+  c.style.width = (rect.w * 2 + 32) + 'px'; c.style.height = (rect.h * 2 + 32) + 'px'
+  c.classList.add('on')
+}
+</script>
+</body>
+</html>

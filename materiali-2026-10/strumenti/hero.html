@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1439px;height:699px;overflow:hidden}
+body{background:#FFFFFF;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased;position:relative}
+.col{position:absolute;left:397px;width:640px;top:-20px}
+.intro{background:#FBF5F6;border:1px solid #F0DADD;border-left:3px solid #C43C4D;border-radius:10px;padding:14px 18px;font-style:italic;font-size:15px;line-height:1.35;color:#4A4340}
+.lbl{font-size:12px;letter-spacing:2px;font-weight:700;color:#8A7A6A;margin:26px 0 16px}
+.card{background:#FFFFFF;border:1px solid #E7E1DA;border-radius:14px;box-shadow:0 10px 30px rgba(26,26,26,.06);overflow:hidden}
+.top{padding:22px 20px 0;display:flex;gap:12px}
+.ico{font-size:22px;line-height:1;margin-top:2px}
+.tit{flex:1}
+.tit h3{font-size:19px;font-weight:800;letter-spacing:-.2px;color:#1A1A1A}
+.tit .sub{font-size:12px;letter-spacing:1px;color:#8A7A6A;margin-top:3px;font-weight:500}
+.match{text-align:right}
+.match b{display:block;font-size:19px;font-weight:800;color:#C43C4D}
+.match span{font-size:12px;color:#8A7A6A}
+.body{padding:0 20px 18px 20px}
+.sez{font-size:12px;letter-spacing:1.6px;font-weight:700;color:#C43C4D;margin:16px 0 6px}
+.txt{font-size:14px;line-height:1.62;color:#3A3532}
+.prof{background:#F7F4EE;border-radius:8px;padding:12px 12px;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:7px 28px}
+.r{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#6B6258}
+.d{display:flex;gap:4px}
+.d i{width:9px;height:9px;border-radius:50%;border:1px solid #CFC6BC;display:block}
+.d i.on{background:#C43C4D;border-color:#C43C4D}
+.foot{border-top:1px solid #EEE8E1;padding:16px 20px 14px;display:flex;justify-content:space-between;align-items:center}
+.foot em{font-size:12.5px;color:#8A7A6A}
+.foot strong{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
+.scegli{margin:0 20px 18px;border:1.5px solid #C43C4D;border-radius:999px;text-align:center;padding:10px;font-weight:700;color:#C43C4D;font-size:15px}
+.barra{position:absolute;left:0;right:0;bottom:0;height:63px;background:#FFFFFF;border-top:1px solid #E7E1DA;box-shadow:0 -8px 24px rgba(26,26,26,.06);display:flex;align-items:center;justify-content:center;gap:12px}
+.barra .sel b{display:block;font-size:14.5px;font-weight:700}
+.barra .sel span{font-size:12px;color:#8A7A6A}
+.barra .btn{width:518px;height:43px;border-radius:999px;background:#C43C4D;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="col">
+  <div class="intro">Una bruschetta al pomodoro e una carbonara: piatti del repertorio centro-italiano, uno fresco e acidulo, l'altro grasso e saporito. La scelta privilegia vini con buona acidità per dialogare con il pomodoro e sgrassare l'uovo e il guanciale.</div>
+  <div class="lbl">3 VINI CONSIGLIATI</div>
+  <div class="card">
+    <div class="top">
+      <div class="ico">🍷</div>
+      <div class="tit"><h3>Chianti Classico Riserva</h3><div class="sub">ROSSO · SANGIOVESE · TOSCANA</div></div>
+      <div class="match"><b>68%</b><span>match</span></div>
+    </div>
+    <div class="body">
+      <div class="sez">PERCHÉ FUNZIONA</div>
+      <p class="txt">Il Sangiovese in versione Riserva lavora su entrambi i piatti: la sua acidità taglia la grassezza dell'uovo e del guanciale della carbonara, mentre la componente fresca regge l'acidità del pomodoro della bruschetta. Tannino presente ma non invadente, adatto a una comanda mista come questa.</p>
+      <div class="sez">NEL BICCHIERE</div>
+      <p class="txt">Trama tannica fine, acidità viva, note di amarena e viola con sottofondo speziato; persistenza media-lunga.</p>
+      <div class="prof" id="prof"></div>
+    </div>
+    <div class="foot"><em>Servire a 16-18°C, in calice ampio per distendere il profilo.</em><strong>38,00 €</strong></div>
+    <div class="scegli">Scegli questa bottiglia</div>
+  </div>
+</div>
+<div class="barra"><div class="sel"><b>2 piatti selezionati</b><span>Svuota</span></div><div class="btn">🍷 Consiglia il vino</div></div>
+<script>
+var P=[['Struttura',4],['Freschezza',4],['Acidità',4],['Sapidità',4],['Tannino',4],['Grassezza',2],['Succulenza',4],['Persistenza',4],['Aromaticità',4],['Equilibrio',5]]
+document.getElementById('prof').innerHTML=P.map(function(x){var d='';for(var i=1;i<=5;i++)d+='<i'+(i<=x[1]?' class="on"':'')+'></i>';return '<div class="r"><span>'+x[0]+'</span><span class="d">'+d+'</span></div>'}).join('')
+</script>
+</body>
+</html>

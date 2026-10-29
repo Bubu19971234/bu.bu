@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Reel</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:Manrope;src:url('manrope.ttf') format('truetype');font-weight:200 800}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:Manrope,'Trebuchet MS',sans-serif;color:#181918}
+.scena{position:absolute;inset:0;opacity:0;transition:opacity .45s ease}
+.scena.on{opacity:1}
+.loghi{display:flex;align-items:flex-start;justify-content:center;gap:34px}
+.loghi .x{line-height:190px}
+.loghi .box{width:190px;height:190px;border:2px solid #deded7;background:#fff;display:flex;align-items:center;justify-content:center;padding:12px}
+.loghi .box img{width:100%;height:100%;object-fit:contain}
+.loghi .x{font-size:52px;color:#8a702d;font-weight:300}
+.loghi .aisom{display:flex;flex-direction:column;align-items:center;gap:10px}
+.loghi .aisom .box{background:#111;border-color:#111;padding:0}
+.loghi .nome{font-size:34px;font-weight:700;letter-spacing:.5px}
+.loghi .nome .w{color:#C43C4D}
+/* apertura */
+#apertura{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;background:#fff}
+#apertura .loghi{margin-bottom:90px}
+#apertura .tag{font-size:30px;letter-spacing:5px;text-transform:uppercase;color:#8a702d;font-weight:500;margin-bottom:44px}
+#apertura h1{font-size:98px;line-height:1.1;font-weight:600;letter-spacing:-2px;max-width:900px}
+#apertura h1 .w{background:linear-gradient(#c6ac61,#c6ac61) no-repeat 0 92%/100% 22%;padding:0 6px}
+#apertura h1 span.r{display:inline-block;opacity:0;transform:translateY(30px);transition:all .5s ease}
+#apertura h1 span.r.on{opacity:1;transform:none}
+#apertura .filetto{width:120px;height:4px;background:#c6ac61;margin-top:80px}
+/* telefono */
+#demo{background:#f3f1e9}
+#didascalia{position:absolute;top:70px;left:70px;right:70px;height:250px;display:flex;align-items:center;justify-content:center;text-align:center}
+#didascalia p{font-size:62px;font-weight:600;line-height:1.14;letter-spacing:-1px;opacity:0;transform:translateY(20px);transition:opacity .2s ease,transform .2s ease;position:absolute}
+#didascalia p.on{opacity:1;transform:none;transition:opacity .35s ease .22s,transform .35s ease .22s}
+#didascalia b{font-weight:700;background:linear-gradient(#c6ac61,#c6ac61) no-repeat 0 92%/100% 20%}
+.telefono{position:absolute;left:50%;top:350px;width:836px;height:1500px;transform:translateX(-50%);background:#181918;border-radius:90px;padding:28px;box-shadow:0 30px 90px rgba(24,25,24,.28)}
+.schermo{width:780px;height:1444px;border-radius:64px;overflow:hidden;position:relative;background:#fff}
+.schermo iframe{width:390px;height:722px;border:0;transform:scale(2);transform-origin:0 0;display:block}
+.notch{position:absolute;left:50%;top:40px;width:200px;height:46px;background:#181918;border-radius:30px;transform:translateX(-50%);z-index:3}
+#etichetta{position:absolute;right:60px;bottom:30px;font-size:26px;color:#666761;letter-spacing:1px}
+#cerchio{position:absolute;border:8px solid #c6ac61;border-radius:8px;opacity:0;transition:opacity .35s ease;box-shadow:0 0 0 6px rgba(198,172,97,.25);pointer-events:none;z-index:5}
+#cerchio.on{opacity:1}
+/* chiusura */
+#chiusura{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;background:#fff}
+#chiusura .loghi{margin-bottom:80px}
+#chiusura h2{font-size:94px;line-height:1.1;font-weight:600;letter-spacing:-2px}
+#chiusura h2 .w{background:linear-gradient(#c6ac61,#c6ac61) no-repeat 0 92%/100% 22%;padding:0 6px}
+#chiusura .prod{font-size:40px;color:#55574f;margin-top:40px}
+#chiusura .url{margin-top:80px;font-size:40px;font-weight:600;background:#181918;color:#fff;padding:32px 56px}
+#chiusura .piccolo{margin-top:36px;font-size:30px;color:#666761}
+</style>
+</head>
+<body>
+<section class="scena" id="apertura">
+  <div class="loghi"><div class="box"><img src="logo-cdb.jpg" alt=""></div><span class="x">×</span><div class="aisom"><div class="box"><img src="logo-aisom.png" alt=""></div><span class="nome" id="ap-nome"></span></div></div>
+  <span class="tag" id="ap-tag"></span>
+  <h1 id="ap-titolo"></h1>
+  <div class="filetto"></div>
+</section>
+
+<section class="scena" id="demo">
+  <div id="didascalia"></div>
+  <div class="telefono"><div class="schermo"><div class="notch"></div><iframe id="app" title="strumento"></iframe></div></div>
+  <div id="cerchio"></div>
+  <div id="etichetta"></div>
+</section>
+
+<section class="scena" id="chiusura">
+  <div class="loghi"><div class="box"><img src="logo-cdb.jpg" alt=""></div><span class="x">×</span><div class="aisom"><div class="box"><img src="logo-aisom.png" alt=""></div><span class="nome" id="ch-nome"></span></div></div>
+  <h2 id="ch-titolo"></h2>
+  <p class="prod" id="ch-prod"></p>
+  <p class="url">centrodistribuzionebevande.it</p>
+  <p class="piccolo" id="ch-piccolo"></p>
+</section>
+
+<script>
+var REEL = {
+  margini: {
+    tag: 'Per ristoratori',
+    titolo: ['Questa', 'tagliata', 'a <span class="w">18 €</span>…', 'ti fa', '<span class="w">perdere</span>', 'soldi.'],
+    nome: 'AI Som <span class="w">Margini</span>',
+    src: 'http://localhost:8769/food-cost-ristorante.html?strumento=margini',
+    didascalie: [
+      'Affitto, personale, bollette:<br><b>il conto vero del tuo locale</b>',
+      'La tagliata è <b>sotto obiettivo</b>',
+      'Prezzo giusto: <b>26,50 €</b>',
+      'Cambi il prezzo e <b>torna in pari</b>',
+    ],
+    etichetta: 'Esempio · ristorante inventato',
+    chiusura: 'Provalo gratis<br>con i <span class="w">tuoi numeri</span>',
+    prod: 'AI Som Margini · il prezzo giusto di ogni piatto',
+    piccolo: 'Ristoranti, pizzerie, bar e gelaterie',
+  },
+  sommelier: {
+    tag: 'Sabato sera, sala piena',
+    titolo: ['Il tavolo 7', 'chiede', 'che <span class="w">vino</span>', 'abbinare.', 'Nessuno in sala', 'lo sa.'],
+    nome: 'AI <span class="w">Som</span>',
+    src: 'http://localhost:8769/food-cost-ristorante.html?strumento=sommelier',
+    didascalie: [
+      'Il cliente scrive<br><b>cosa sta mangiando</b>',
+      'Il sommelier consiglia<br><b>solo i vini della tua carta</b>',
+      'E per i turisti?<br><b>Anche in inglese</b>',
+      '8 lingue, <b>nessuna app</b>',
+    ],
+    etichetta: 'Demo · carta campione',
+    chiusura: 'Provalo gratis<br>sulla tua <span class="w">carta vini</span>',
+    prod: 'AI Som · il sommelier nel tuo menù',
+    piccolo: 'Ristoranti, enoteche e wine bar',
+  },
+}
+var r = REEL[new URLSearchParams(location.search).get('reel') || 'margini']
+document.getElementById('ap-tag').textContent = r.tag
+document.getElementById('ap-titolo').innerHTML = r.titolo.map(function (t) { return '<span class="r">' + t + '</span>' }).join(' ')
+document.getElementById('ap-nome').innerHTML = r.nome
+document.getElementById('ch-nome').innerHTML = r.nome
+document.getElementById('app').src = r.src
+document.getElementById('didascalia').innerHTML = r.didascalie.map(function (t) { return '<p>' + t + '</p>' }).join('')
+document.getElementById('etichetta').textContent = r.etichetta
+document.getElementById('ch-titolo').innerHTML = r.chiusura
+document.getElementById('ch-prod').textContent = r.prod
+document.getElementById('ch-piccolo').textContent = r.piccolo
+
+window.scena = function (id) { document.querySelectorAll('.scena').forEach(function (s) { s.classList.toggle('on', s.id === id) }) }
+window.parola = function (i) { var s = document.querySelectorAll('#ap-titolo .r')[i]; if (s) s.classList.add('on') }
+window.didascalia = function (i) { document.querySelectorAll('#didascalia p').forEach(function (p, k) { p.classList.toggle('on', k === i) }) }
+// evidenzia un rettangolo dato in coordinate del viewport dell'iframe (390 px di larghezza)
+window.cerchia = function (rect) {
+  var c = document.getElementById('cerchio')
+  if (!rect) { c.classList.remove('on'); return }
+  var sch = document.querySelector('.schermo').getBoundingClientRect()
+  c.style.left = (sch.left + rect.x * 2 - 14) + 'px'; c.style.top = (sch.top + rect.y * 2 - 14) + 'px'
+  c.style.width = (rect.w * 2 + 28) + 'px'; c.style.height = (rect.h * 2 + 28) + 'px'
+  c.classList.add('on')
+}
+</script>
+</body>
+</html>
