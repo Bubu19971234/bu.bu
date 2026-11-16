@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "a_velluto_base",
+    "stato": "completed",
+    "file": "a_velluto_base.jpg",
+    "prompt": "Photorealistic photograph, natural skin texture. The same man as in the reference image, same face: a handsome Italian gentleman in his early forties with thick deep wine-burgundy hair and a wine-burgundy moustache, a real antique brass monocle on his right eye with a short fine brass chain. Everything he wears is the same deep burgundy colour, head to toe. Burgundy velvet three-piece suit with wide peak lapels, burgundy shirt and tie, burgundy pocket square, burgundy leather gloves held in one hand. Three-quarter length portrait, standing, facing camera, confident warm smile, impeccably formal and deliberately over the top, plain warm cream background, soft studio lighting."
+  },
+  {
+    "nome": "b_frac_e_cilindro",
+    "stato": "completed",
+    "file": "b_frac_e_cilindro.jpg",
+    "prompt": "Photorealistic photograph, natural skin texture. The same man as in the reference image, same face: a handsome Italian gentleman in his early forties with thick deep wine-burgundy hair and a wine-burgundy moustache, a real antique brass monocle on his right eye with a short fine brass chain. Everything he wears is the same deep burgundy colour, head to toe. Full white-tie evening dress entirely in burgundy: velvet tailcoat with satin lapels, burgundy waistcoat, burgundy wing-collar shirt, a large burgundy silk bow tie, a tall burgundy silk top hat, burgundy gloves. Three-quarter length portrait, standing, facing camera, confident warm smile, impeccably formal and deliberately over the top, plain warm cream background, soft studio lighting."
+  },
+  {
+    "nome": "c_mantello",
+    "stato": "completed",
+    "file": "c_mantello.jpg",
+    "prompt": "Photorealistic photograph, natural skin texture. The same man as in the reference image, same face: a handsome Italian gentleman in his early forties with thick deep wine-burgundy hair and a wine-burgundy moustache, a real antique brass monocle on his right eye with a short fine brass chain. Everything he wears is the same deep burgundy colour, head to toe. Burgundy velvet double-breasted suit with a huge burgundy silk cravat and a brass grape-cluster brooch, and a long sweeping burgundy opera cape with satin lining draped over his shoulders, burgundy gloves. Three-quarter length portrait, standing, facing camera, confident warm smile, impeccably formal and deliberately over the top, plain warm cream background, soft studio lighting."
+  },
+  {
+    "nome": "d_capelli_e_baffi_grandi",
+    "stato": "completed",
+    "file": "d_capelli_e_baffi_grandi.jpg",
+    "prompt": "Photorealistic photograph, natural skin texture. The same man as in the reference image, same face: a handsome Italian gentleman in his early forties with thick deep wine-burgundy hair and a wine-burgundy moustache, a real antique brass monocle on his right eye with a short fine brass chain. Everything he wears is the same deep burgundy colour, head to toe. His wine-burgundy hair is styled in a tall, glossy, voluminous pompadour and his wine-burgundy moustache is long with tips waxed and curled upward. Burgundy velvet tuxedo with wide satin shawl lapels, an oversized burgundy velvet bow tie, a burgundy ruffled dress shirt. Three-quarter length portrait, standing, facing camera, confident warm smile, impeccably formal and deliberately over the top, plain warm cream background, soft studio lighting."
+  }
+]
