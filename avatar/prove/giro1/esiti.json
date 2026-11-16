@@ -1,0 +1,62 @@
+[
+  {
+    "nome": "soul_profilo",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-3e8d-71db-9834-b78e73b1c72a",
+    "file": [
+      "soul_profilo_1.jpg",
+      "soul_profilo_2.jpg",
+      "soul_profilo_3.jpg",
+      "soul_profilo_4.jpg"
+    ]
+  },
+  {
+    "nome": "soul_parlato",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-3e9b-739c-9fe2-7eb525432eac",
+    "file": [
+      "soul_parlato_1.jpg",
+      "soul_parlato_2.jpg",
+      "soul_parlato_3.jpg",
+      "soul_parlato_4.jpg"
+    ]
+  },
+  {
+    "nome": "qwen_tavola",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-3ea6-79b2-8596-dbc8a07447f6",
+    "file": [
+      "qwen_tavola_1.jpg"
+    ]
+  },
+  {
+    "nome": "qwen_profilo",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-3e8b-7d89-ae3f-bcffaf4bae56",
+    "file": [
+      "qwen_profilo_1.jpg"
+    ]
+  },
+  {
+    "nome": "grok_profilo",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-3e6b-7859-bf0f-51c059673f4d",
+    "file": [
+      "grok_profilo_1.jpg"
+    ]
+  },
+  {
+    "nome": "influencer_scheda",
+    "stato": "completed",
+    "dettaglio": null,
+    "request_id": "01a1e3b7-41a0-757f-bfe2-b7d5f993adc4",
+    "file": [
+      "influencer_scheda_1.jpg"
+    ]
+  }
+]
