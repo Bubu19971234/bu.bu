@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "1_tutto_vino",
+    "stato": "completed",
+    "file": "1_tutto_vino.jpg",
+    "prompt": "Photorealistic photograph, 85mm lens, natural skin texture, half-body portrait: a handsome Italian gentleman in his early forties whose thick swept-back hair and neat moustache are a deep glossy wine-burgundy colour, clearly dyed and striking. No hat. He wears a rich burgundy velvet three-piece suit, burgundy shirt and burgundy tie, a head-to-toe single-colour look. A real antique brass monocle on his right eye with a clear glass lens and a short fine brass chain to his lapel. Facing camera, warm knowing smile, charismatic and likeable, plain deep burgundy background, soft warm studio lighting."
+  },
+  {
+    "nome": "2_volpe_argentata",
+    "stato": "completed",
+    "file": "2_volpe_argentata.jpg",
+    "prompt": "Photorealistic photograph, 85mm lens, natural skin texture, half-body portrait: a very handsome, charismatic Italian gentleman of about sixty, tanned skin, thick swept-back silver-white hair, a full groomed white moustache and short white beard, bright lively eyes, laugh lines. No hat. Dark bottle-green three-piece suit, cream shirt, burgundy tie, burgundy pocket square. A real antique brass monocle on his right eye with a clear glass lens and a short fine brass chain to his lapel. Facing camera, warm knowing smile, charismatic and likeable, plain deep burgundy background, soft warm studio lighting."
+  },
+  {
+    "nome": "3_baffo_firma",
+    "stato": "completed",
+    "file": "3_baffo_firma.jpg",
+    "prompt": "Photorealistic photograph, 85mm lens, natural skin texture, half-body portrait: a handsome Italian gentleman in his early forties with slicked-back jet-black hair, strong dark eyebrows and a magnificent jet-black waxed moustache with long tips curled elegantly upward, his unmistakable signature. No hat. Dark bottle-green three-piece suit, cream shirt, burgundy tie. A real antique brass monocle on his right eye with a clear glass lens and a short fine brass chain to his lapel. Facing camera, warm knowing smile, charismatic and likeable, plain deep burgundy background, soft warm studio lighting."
+  },
+  {
+    "nome": "4_gigante_buono",
+    "stato": "completed",
+    "file": "4_gigante_buono.jpg",
+    "prompt": "Photorealistic photograph, 85mm lens, natural skin texture, half-body portrait: a big, tall, broad-shouldered, barrel-chested Italian gentleman in his mid-forties with a kind jovial face, rosy cheeks, a full thick well-groomed chestnut beard and short hair, a gentle giant. Short-brim burgundy felt fedora. Dark bottle-green three-piece suit stretched over his big frame, cream shirt, burgundy tie. A real antique brass monocle on his right eye with a clear glass lens and a short fine brass chain to his lapel. Facing camera, warm knowing smile, charismatic and likeable, plain deep burgundy background, soft warm studio lighting."
+  },
+  {
+    "nome": "5_rosso_rame",
+    "stato": "completed",
+    "file": "5_rosso_rame.jpg",
+    "prompt": "Photorealistic photograph, 85mm lens, natural skin texture, half-body portrait: a handsome Italian gentleman in his early forties with a full head of wavy natural copper-red hair, a neat copper-red moustache and short beard, freckles and green eyes. No hat. Dark bottle-green three-piece suit, cream shirt, burgundy tie. A real antique brass monocle on his right eye with a clear glass lens and a short fine brass chain to his lapel. Facing camera, warm knowing smile, charismatic and likeable, plain deep burgundy background, soft warm studio lighting."
+  }
+]
