@@ -35,107 +35,94 @@ struct MenuTheme {
 }
 
 struct MenuLayoutView: View {
-    let menu: Menu
+    let anteprima: Anteprima
     let theme: MenuTheme
-    @State private var selectedSection: MenuSection.ID?
 
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(menu.restaurantName)
-                        .font(theme.titleFont)
-                        .foregroundStyle(theme.text)
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 8)
-
                     sectionChips(proxy: proxy)
-
-                    ForEach(menu.sections) { section in
-                        sectionView(section).id(section.id)
+                    ForEach(anteprima.menu) { sezione in
+                        sectionView(sezione).id(sezione.id)
                     }
-
-                    if !menu.notes.isEmpty {
-                        VStack(alignment: .leading, spacing: 6) {
-                            ForEach(menu.notes, id: \.self) { Text($0) }
-                        }
-                        .font(.footnote)
-                        .foregroundStyle(theme.secondaryText)
-                    }
-
+                    if !anteprima.carta.isEmpty { cartaView }
                     Text("Per informazioni su allergeni e intolleranze rivolgiti al personale.")
                         .font(.footnote.weight(.semibold))
                         .foregroundStyle(theme.secondaryText)
                 }
                 .padding(.horizontal, 16)
-                .padding(.bottom, 32)
+                .padding(.vertical, 16)
             }
             .background(theme.background.ignoresSafeArea())
         }
+        .navigationTitle("Anteprima")
         .navigationBarTitleDisplayMode(.inline)
     }
 
     private func sectionChips(proxy: ScrollViewProxy) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                ForEach(menu.sections) { section in
-                    Button(section.title) {
-                        withAnimation { proxy.scrollTo(section.id, anchor: .top) }
-                    }
-                    .font(.subheadline.weight(.medium))
-                    .padding(.horizontal, 14).padding(.vertical, 8)
-                    .background(Capsule().fill(theme.surface))
-                    .overlay(Capsule().stroke(theme.accent.opacity(0.4)))
-                    .foregroundStyle(theme.accent)
+                ForEach(anteprima.menu) { sezione in
+                    Button(sezione.sezione) { withAnimation { proxy.scrollTo(sezione.id, anchor: .top) } }
+                        .font(.subheadline.weight(.medium))
+                        .padding(.horizontal, 14).padding(.vertical, 8)
+                        .background(Capsule().fill(theme.surface))
+                        .overlay(Capsule().stroke(theme.accent.opacity(0.4)))
+                        .foregroundStyle(theme.accent)
                 }
             }
         }
     }
 
-    private func sectionView(_ section: MenuSection) -> some View {
+    private func titolo(_ t: String) -> some View {
+        Text(t.uppercased()).font(.caption.weight(.bold)).tracking(2).foregroundStyle(theme.accent)
+    }
+
+    private func sectionView(_ sezione: Sezione) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(section.title.uppercased())
-                .font(.caption.weight(.bold))
-                .tracking(2)
-                .foregroundStyle(theme.accent)
-            ForEach(section.items) { item in
-                itemCard(item)
+            titolo(sezione.sezione)
+            ForEach(sezione.piatti) { piatto in
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(piatto.nome).font(theme.itemFont).foregroundStyle(theme.text)
+                        Spacer(minLength: 12)
+                        if piatto.prezzo > 0 {
+                            Text(piatto.prezzo.euro).font(.subheadline.monospacedDigit()).foregroundStyle(theme.text)
+                        }
+                    }
+                    if !piatto.descrizione.isEmpty {
+                        Text(piatto.descrizione).font(theme.bodyFont).foregroundStyle(theme.secondaryText)
+                    }
+                    if !piatto.allergeni.isEmpty {
+                        Text("Allergeni: " + piatto.allergeni.compactMap { Allergene(rawValue: $0)?.nome }.joined(separator: ", "))
+                            .font(.caption2).foregroundStyle(theme.secondaryText)
+                    }
+                }
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 12).fill(theme.surface))
             }
         }
     }
 
-    private func itemCard(_ item: MenuItem) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(item.name).font(theme.itemFont).foregroundStyle(theme.text)
-                Spacer(minLength: 12)
-                VStack(alignment: .trailing, spacing: 2) {
-                    ForEach(item.prices, id: \.self) { price in
-                        Text([price.label, price.formatted(currency: menu.currency)]
-                                .filter { !$0.isEmpty }.joined(separator: " "))
-                            .font(.subheadline.monospacedDigit())
-                            .foregroundStyle(theme.text)
+    private var cartaView: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            titolo("Carta bevande")
+            ForEach(anteprima.carta) { b in
+                HStack(alignment: .firstTextBaseline) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(b.nome).font(theme.itemFont).foregroundStyle(theme.text)
+                        let det = [b.cantina, b.annata, b.colore.capitalized].filter { !$0.isEmpty }.joined(separator: " · ")
+                        if !det.isEmpty { Text(det).font(.caption).foregroundStyle(theme.secondaryText) }
                     }
+                    Spacer(minLength: 12)
+                    if b.prezzo > 0 { Text(b.prezzo.euro).font(.subheadline.monospacedDigit()).foregroundStyle(theme.text) }
                 }
-            }
-            if item.kind == .vino {
-                let details = [item.wine.producer, item.wine.region, item.wine.vintage, item.wine.grapes]
-                    .filter { !$0.isEmpty }.joined(separator: " · ")
-                if !details.isEmpty {
-                    Text(details).font(.caption).foregroundStyle(theme.secondaryText)
-                }
-            }
-            if !item.description.isEmpty {
-                Text(item.description).font(theme.bodyFont).foregroundStyle(theme.secondaryText)
-            }
-            if !item.allergens.isEmpty {
-                Text("Allergeni: " + item.allergens.map(\.label).joined(separator: ", "))
-                    .font(.caption2)
-                    .foregroundStyle(theme.secondaryText)
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 12).fill(theme.surface))
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 12).fill(theme.surface))
     }
 }

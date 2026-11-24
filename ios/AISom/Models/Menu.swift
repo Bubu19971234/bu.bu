@@ -1,86 +1,66 @@
 import Foundation
 
-/// Specchio dello schema JSON del backend (backend/src/schema.ts).
-/// Il decoder usa .convertFromSnakeCase, quindi `restaurant_name` -> `restaurantName`.
-
-struct MenuImportResponse: Decodable {
-    var menu: Menu
-    let model: String
-    let resolvedFrom: String
-    let needsReview: Bool
+/// Specchio dell'anteprima di ai-som-saas `POST /api/onboarding-import`.
+/// L'anteprima NON è salvata: lo diventa solo con la conferma del ristoratore.
+struct AnteprimaResponse: Decodable {
+    let ok: Bool
+    var anteprima: Anteprima
 }
 
-struct Menu: Codable, Equatable {
-    var restaurantName: String
-    var currency: String
-    var language: String
-    var sections: [MenuSection]
-    var notes: [String]
-    var extractionWarnings: [String]
+struct Anteprima: Codable, Equatable {
+    var menu: [Sezione]
+    var carta: [Bevanda]
 }
 
-struct MenuSection: Codable, Equatable, Identifiable {
+struct Sezione: Codable, Equatable, Identifiable {
     var id = UUID()
-    var title: String
-    var items: [MenuItem]
-
-    private enum CodingKeys: String, CodingKey { case title, items }
+    var sezione: String
+    var piatti: [Piatto]
+    private enum CodingKeys: String, CodingKey { case sezione, piatti }
 }
 
-struct MenuItem: Codable, Equatable, Identifiable {
+struct Piatto: Codable, Equatable, Identifiable {
     var id = UUID()
-    var name: String
-    var description: String
-    var kind: Kind
-    var prices: [Price]
-    var allergens: [Allergen]
-    var allergensDeclared: Bool
-    var tags: [String]
-    var wine: Wine
-    var sourceText: String
-    var uncertainty: String
+    var nome: String
+    var descrizione: String
+    /// In euro (es. 12.5). 0 = prezzo non letto.
+    var prezzo: Double
+    /// Codici UE "1"…"14" (Reg. 1169/2011). Lista vuota = nessun allergene DICHIARATO nel menù.
+    var allergeni: [String]
+    private enum CodingKeys: String, CodingKey { case nome, descrizione, prezzo, allergeni }
 
-    enum Kind: String, Codable { case piatto, vino, bevanda, altro }
-
-    private enum CodingKeys: String, CodingKey {
-        case name, description, kind, prices, allergens, allergensDeclared, tags, wine, sourceText, uncertainty
-    }
-
-    /// Voce da far controllare al ristoratore prima della pubblicazione.
-    var needsAttention: Bool { !uncertainty.isEmpty || prices.isEmpty || (kind == .piatto && !allergensDeclared) }
+    var daControllare: Bool { prezzo == 0 || allergeni.isEmpty }
 }
 
-struct Price: Codable, Equatable, Hashable {
-    var amountCents: Int
-    var label: String
-
-    func formatted(currency: String) -> String {
-        let value = Decimal(amountCents) / 100
-        return value.formatted(.currency(code: currency.isEmpty ? "EUR" : currency))
-    }
+struct Bevanda: Codable, Equatable, Identifiable {
+    var id = UUID()
+    var nome: String
+    var cantina: String
+    var annata: String
+    var prezzo: Double
+    /// vino | cocktail | birra | analcolico | amaro
+    var tipo: String
+    /// ROSSO | BIANCO | ROSÈ | BOLLICINE | "" (solo vini)
+    var colore: String
+    private enum CodingKeys: String, CodingKey { case nome, cantina, annata, prezzo, tipo, colore }
 }
 
-struct Wine: Codable, Equatable {
-    var producer: String
-    var vintage: String
-    var region: String
-    var grapes: String
-    var color: WineColor
-
-    enum WineColor: String, Codable { case rosso, bianco, rosato, bollicine, dolce, nonIndicato = "non_indicato" }
-}
-
-/// I 14 allergeni dell'Allegato II Reg. UE 1169/2011.
-enum Allergen: String, Codable, CaseIterable, Identifiable {
-    case glutine, crostacei, uova, pesce, arachidi, soia, latte
-    case fruttaAGuscio = "frutta_a_guscio"
-    case sedano, senape, sesamo, solfiti, lupini, molluschi
+/// I 14 allergeni dell'Allegato II Reg. UE 1169/2011, con il codice usato nel database.
+enum Allergene: String, CaseIterable, Identifiable {
+    case glutine = "1", crostacei = "2", uova = "3", pesce = "4", arachidi = "5", soia = "6", latte = "7"
+    case fruttaAGuscio = "8", sedano = "9", senape = "10", sesamo = "11", solfiti = "12", lupini = "13", molluschi = "14"
 
     var id: String { rawValue }
-    var label: String {
+    var nome: String {
         switch self {
-        case .fruttaAGuscio: "Frutta a guscio"
-        default: rawValue.capitalized
+        case .glutine: "Glutine"; case .crostacei: "Crostacei"; case .uova: "Uova"; case .pesce: "Pesce"
+        case .arachidi: "Arachidi"; case .soia: "Soia"; case .latte: "Latte"; case .fruttaAGuscio: "Frutta a guscio"
+        case .sedano: "Sedano"; case .senape: "Senape"; case .sesamo: "Sesamo"; case .solfiti: "Solfiti"
+        case .lupini: "Lupini"; case .molluschi: "Molluschi"
         }
     }
+}
+
+extension Double {
+    var euro: String { formatted(.currency(code: "EUR")) }
 }

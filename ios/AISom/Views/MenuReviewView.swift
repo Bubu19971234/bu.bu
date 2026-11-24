@@ -1,112 +1,112 @@
 import SwiftUI
 
-/// Revisione obbligatoria prima della pubblicazione: l'AI può sbagliare prezzi e allergeni,
-/// e la responsabilità verso il cliente (Reg. UE 1169/2011) resta del ristoratore.
+/// Revisione obbligatoria: niente va online senza la conferma del ristoratore.
+/// Prezzi e allergeni sono responsabilità sua (Reg. UE 1169/2011).
 struct MenuReviewView: View {
-    @State var menu: Menu
-    let resolvedFrom: String
-    @State private var confirmed = false
-    @State private var showPreview = false
+    @State var anteprima: Anteprima
+    let service: MenuImportService
+    @State private var confermato = false
+    @State private var salvataggio = false
+    @State private var salvato = false
+    @State private var errore: String?
 
-    private var itemsNeedingAttention: Int {
-        menu.sections.flatMap(\.items).filter(\.needsAttention).count
-    }
+    private var daControllare: Int { anteprima.menu.flatMap(\.piatti).filter(\.daControllare).count }
 
     var body: some View {
         List {
             Section {
-                TextField("Nome del locale", text: $menu.restaurantName)
-                LabeledContent("Fonte", value: resolvedFrom).font(.caption)
-                if itemsNeedingAttention > 0 {
-                    Label("\(itemsNeedingAttention) voci da controllare (prezzo mancante, lettura incerta o allergeni non dichiarati)",
+                if daControllare > 0 {
+                    Label("\(daControllare) piatti da controllare: prezzo non letto o nessun allergene dichiarato nel menù.",
                           systemImage: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
                 }
-                ForEach(menu.extractionWarnings, id: \.self) { warning in
-                    Label(warning, systemImage: "exclamationmark.circle").foregroundStyle(.orange)
-                }
+                NavigationLink("Anteprima per i clienti") { MenuLayoutView(anteprima: anteprima, theme: .classico) }
             }
 
-            ForEach($menu.sections) { $section in
+            ForEach($anteprima.menu) { $sezione in
                 Section {
-                    ForEach($section.items) { $item in
-                        NavigationLink {
-                            MenuItemEditor(item: $item, currency: menu.currency)
-                        } label: {
+                    ForEach($sezione.piatti) { $piatto in
+                        NavigationLink { PiattoEditor(piatto: $piatto) } label: {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text(item.name)
-                                    Text(item.prices.map { $0.formatted(currency: menu.currency) }.joined(separator: " · "))
+                                    Text(piatto.nome)
+                                    Text(piatto.prezzo > 0 ? piatto.prezzo.euro : "Prezzo non letto")
                                         .font(.caption).foregroundStyle(.secondary)
                                 }
                                 Spacer()
-                                if item.needsAttention {
+                                if piatto.daControllare {
                                     Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.orange)
                                 }
                             }
                         }
                     }
-                    .onDelete { section.items.remove(atOffsets: $0) }
+                    .onDelete { sezione.piatti.remove(atOffsets: $0) }
                 } header: {
-                    TextField("Sezione", text: $section.title)
+                    TextField("Sezione", text: $sezione.sezione)
+                }
+            }
+
+            if !anteprima.carta.isEmpty {
+                Section("Carta bevande (\(anteprima.carta.count))") {
+                    ForEach($anteprima.carta) { $b in
+                        HStack {
+                            TextField("Nome", text: $b.nome)
+                            TextField("€", value: $b.prezzo, format: .number)
+                                .keyboardType(.decimalPad).multilineTextAlignment(.trailing).frame(width: 70)
+                        }
+                    }
+                    .onDelete { anteprima.carta.remove(atOffsets: $0) }
                 }
             }
 
             Section {
-                Toggle("Ho controllato prezzi e allergeni: il menu è corretto", isOn: $confirmed)
-                Button("Anteprima e pubblica") { showPreview = true }
-                    .disabled(!confirmed)
+                Toggle("Ho controllato prezzi e allergeni: il menù è corretto", isOn: $confermato)
+                Button(salvato ? "Salvato ✓" : "Salva menù e carta") { salva() }
+                    .disabled(!confermato || salvataggio || salvato)
+                if let errore { Text(errore).foregroundStyle(.red) }
+            } footer: {
+                Text("Dopo il salvataggio, dal pannello \"Abbinamenti\" premi Ricalcola: i piatti ricevono il profilo per i consigli sui vini.")
             }
         }
-        .navigationTitle("Revisione menu")
-        .navigationDestination(isPresented: $showPreview) {
-            MenuLayoutView(menu: menu, theme: .classico)
+        .navigationTitle("Controlla il menù")
+    }
+
+    private func salva() {
+        salvataggio = true
+        errore = nil
+        Task {
+            defer { salvataggio = false }
+            do { try await service.conferma(anteprima); salvato = true }
+            catch { errore = error.localizedDescription }
         }
     }
 }
 
-struct MenuItemEditor: View {
-    @Binding var item: MenuItem
-    let currency: String
+struct PiattoEditor: View {
+    @Binding var piatto: Piatto
 
     var body: some View {
         Form {
-            if !item.uncertainty.isEmpty {
-                Section("Dubbio di lettura") { Text(item.uncertainty).foregroundStyle(.orange) }
-            }
-            Section("Voce") {
-                TextField("Nome", text: $item.name)
-                TextField("Descrizione", text: $item.description, axis: .vertical)
-            }
-            Section("Prezzi (centesimi)") {
-                ForEach(item.prices.indices, id: \.self) { i in
-                    HStack {
-                        TextField("Etichetta", text: $item.prices[i].label)
-                        TextField("Centesimi", value: $item.prices[i].amountCents, format: .number)
-                            .keyboardType(.numberPad).multilineTextAlignment(.trailing)
-                    }
-                }
-                Button("Aggiungi prezzo") { item.prices.append(Price(amountCents: 0, label: "")) }
+            Section("Piatto") {
+                TextField("Nome", text: $piatto.nome)
+                TextField("Descrizione", text: $piatto.descrizione, axis: .vertical)
+                TextField("Prezzo €", value: $piatto.prezzo, format: .number).keyboardType(.decimalPad)
             }
             Section {
-                ForEach(Allergen.allCases) { allergen in
-                    Toggle(allergen.label, isOn: Binding(
-                        get: { item.allergens.contains(allergen) },
+                ForEach(Allergene.allCases) { a in
+                    Toggle(a.nome, isOn: Binding(
+                        get: { piatto.allergeni.contains(a.rawValue) },
                         set: { on in
-                            item.allergensDeclared = true
-                            if on { item.allergens.append(allergen) } else { item.allergens.removeAll { $0 == allergen } }
+                            if on { piatto.allergeni.append(a.rawValue) } else { piatto.allergeni.removeAll { $0 == a.rawValue } }
                         }
                     ))
                 }
             } header: {
                 Text("Allergeni")
             } footer: {
-                Text(item.allergensDeclared
-                     ? "Allergeni confermati."
-                     : "Il menu originale non dichiarava allergeni per questa voce: inseriscili tu. L'AI non li deduce dagli ingredienti.")
+                Text("L'AI riporta solo gli allergeni scritti nel menù originale e non li deduce dagli ingredienti: verifica tu ogni piatto.")
             }
-            Section("Testo originale") { Text(item.sourceText).font(.caption).foregroundStyle(.secondary) }
         }
-        .navigationTitle(item.name)
+        .navigationTitle(piatto.nome)
     }
 }

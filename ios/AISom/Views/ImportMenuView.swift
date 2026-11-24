@@ -2,7 +2,7 @@ import SwiftUI
 import PhotosUI
 import UniformTypeIdentifiers
 
-/// Schermata di import: QR code, PDF o foto del menu cartaceo.
+/// Import del menù: QR code, PDF o foto. Il risultato è un'ANTEPRIMA da controllare.
 struct ImportMenuView: View {
     let service: MenuImportService
 
@@ -11,34 +11,34 @@ struct ImportMenuView: View {
     @State private var photoItems: [PhotosPickerItem] = []
     @State private var isLoading = false
     @State private var errorMessage: String?
-    @State private var imported: MenuImportResponse?
-    @State private var hasAuthorization = false
+    @State private var anteprima: Anteprima?
+    @State private var autorizzato = false
 
     var body: some View {
         Form {
             Section {
-                Toggle("Confermo di essere il titolare del locale o di avere la sua autorizzazione a importare questo menu",
-                       isOn: $hasAuthorization)
+                Toggle("Confermo di essere il titolare del locale o di avere la sua autorizzazione a importare questo menù",
+                       isOn: $autorizzato)
                     .font(.footnote)
             } footer: {
-                Text("Il menu viene inviato a un servizio di intelligenza artificiale esterno (Anthropic) per essere letto. Non inviare dati personali.")
+                Text("Il menù viene letto da un servizio di intelligenza artificiale (Anthropic). Non inviare dati personali.")
             }
 
-            Section("Importa il menu") {
-                Button("Scansiona QR code", systemImage: "qrcode.viewfinder") { showScanner = true }
+            Section("Importa il menù") {
+                Button("Scansiona il QR code", systemImage: "qrcode.viewfinder") { showScanner = true }
                     .disabled(!QRScannerView.isAvailable)
                 Button("Carica PDF", systemImage: "doc.richtext") { showPDFPicker = true }
-                PhotosPicker(selection: $photoItems, maxSelectionCount: 20, matching: .images) {
-                    Label("Foto del menu cartaceo", systemImage: "camera")
+                PhotosPicker(selection: $photoItems, maxSelectionCount: 10, matching: .images) {
+                    Label("Foto del menù cartaceo", systemImage: "camera")
                 }
             }
-            .disabled(!hasAuthorization || isLoading)
+            .disabled(!autorizzato || isLoading)
 
             if isLoading {
                 Section {
                     HStack(spacing: 12) {
                         ProgressView()
-                        Text("Lettura del menu in corso… può richiedere fino a un paio di minuti.")
+                        Text("Lettura del menù in corso… può richiedere un paio di minuti.")
                     }
                 }
             }
@@ -46,52 +46,51 @@ struct ImportMenuView: View {
                 Section { Text(errorMessage).foregroundStyle(.red) }
             }
         }
-        .navigationTitle("AI som")
+        .navigationTitle("AI Som")
         .sheet(isPresented: $showScanner) {
             QRScannerView { url in
                 showScanner = false
-                run { try await service.importFrom(url: url) }
+                esegui { try await service.leggi(link: url) }
             }
             .ignoresSafeArea()
         }
         .fileImporter(isPresented: $showPDFPicker, allowedContentTypes: [.pdf]) { result in
             guard case .success(let url) = result else { return }
-            run {
-                let accessed = url.startAccessingSecurityScopedResource()
-                defer { if accessed { url.stopAccessingSecurityScopedResource() } }
-                return try await service.importFrom(pdf: Data(contentsOf: url))
+            esegui {
+                let accesso = url.startAccessingSecurityScopedResource()
+                defer { if accesso { url.stopAccessingSecurityScopedResource() } }
+                return try await service.leggi(pdf: Data(contentsOf: url))
             }
         }
         .onChange(of: photoItems) { _, items in
             guard !items.isEmpty else { return }
-            run {
-                var images: [UIImage] = []
+            esegui {
+                var foto: [UIImage] = []
                 for item in items {
-                    if let data = try await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
-                        images.append(image)
-                    }
+                    if let data = try await item.loadTransferable(type: Data.self), let img = UIImage(data: data) { foto.append(img) }
                 }
                 photoItems = []
-                return try await service.importFrom(photos: images)
+                return try await service.leggi(foto: foto)
             }
         }
-        .navigationDestination(item: $imported) { response in
-            MenuReviewView(menu: response.menu, resolvedFrom: response.resolvedFrom)
+        .navigationDestination(item: $anteprima) { a in
+            MenuReviewView(anteprima: a, service: service)
         }
     }
 
-    private func run(_ operation: @escaping () async throws -> MenuImportResponse) {
+    private func esegui(_ op: @escaping () async throws -> Anteprima) {
         isLoading = true
         errorMessage = nil
         Task {
             defer { isLoading = false }
-            do { imported = try await operation() }
-            catch { errorMessage = error.localizedDescription }
+            do { anteprima = try await op() } catch { errorMessage = error.localizedDescription }
         }
     }
 }
 
-extension MenuImportResponse: Hashable {
-    static func == (a: Self, b: Self) -> Bool { a.menu == b.menu && a.resolvedFrom == b.resolvedFrom }
-    func hash(into hasher: inout Hasher) { hasher.combine(resolvedFrom); hasher.combine(menu.restaurantName) }
+extension Anteprima: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(menu.count); hasher.combine(carta.count)
+        hasher.combine(menu.first?.piatti.first?.nome)
+    }
 }

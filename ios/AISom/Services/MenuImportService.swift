@@ -1,77 +1,84 @@
 import Foundation
 import UIKit
 
-/// Client dell'endpoint POST /v1/menu/import del backend.
-/// L'AI non viene mai chiamata dall'app: la chiave Anthropic resta sul server.
+/// Client di ai-som-saas `POST /api/onboarding-import` (lo stesso usato dal pannello web).
+/// Due fasi: 1) lettura → anteprima, niente salvato; 2) conferma → salva menù e carta.
+/// L'AI non viene mai chiamata dall'app: la chiave resta sul server.
 struct MenuImportService {
+    /// es. https://ai-som-saas.vercel.app (o il dominio di produzione)
     let baseURL: URL
-    let tokenProvider: () async throws -> String
+    /// Token di sessione Supabase del ristoratore (`session.accessToken` di supabase-swift).
+    let sessionToken: () async throws -> String
+    let localeId: String
     var session: URLSession = .shared
 
     enum ImportError: LocalizedError {
-        case server(code: String, message: String)
+        case server(String)
         case http(Int)
-
         var errorDescription: String? {
             switch self {
-            case .server(_, let message): message
+            case .server(let message): message
             case .http(let status): "Errore del server (\(status))"
             }
         }
     }
 
-    func importFrom(url: URL) async throws -> MenuImportResponse {
-        try await send(["url": url.absoluteString])
+    func leggi(link: URL) async throws -> Anteprima {
+        try await anteprima(["url": link.absoluteString])
     }
 
-    func importFrom(pdf: Data) async throws -> MenuImportResponse {
-        try await send(["pdf_base64": pdf.base64EncodedString()])
+    func leggi(pdf: Data) async throws -> Anteprima {
+        try await anteprima(["pdf_base64": pdf.base64EncodedString()])
     }
 
-    /// Le foto vengono ridimensionate e compresse: meno token, upload più veloce.
-    func importFrom(photos: [UIImage]) async throws -> MenuImportResponse {
-        let images: [[String: String]] = photos.compactMap { image in
-            guard let jpeg = image.resizedForUpload().jpegData(compressionQuality: 0.8) else { return nil }
+    /// Le foto si ridimensionano e comprimono: meno token, upload più veloce. Max 10.
+    func leggi(foto: [UIImage]) async throws -> Anteprima {
+        let immagini: [[String: String]] = foto.prefix(10).compactMap { img in
+            guard let jpeg = img.ridimensionata().jpegData(compressionQuality: 0.8) else { return nil }
             return ["base64": jpeg.base64EncodedString(), "media_type": "image/jpeg"]
         }
-        return try await send(["images": images])
+        return try await anteprima(["immagini": immagini])
     }
 
-    private func send(_ body: [String: Any]) async throws -> MenuImportResponse {
-        var request = URLRequest(url: baseURL.appending(path: "v1/menu/import"))
-        request.httpMethod = "POST"
-        request.timeoutInterval = 180 // l'estrazione di una carta vini lunga può richiedere minuti
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(try await tokenProvider())", forHTTPHeaderField: "Authorization")
-        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+    /// Salva l'anteprima così come l'ha corretta il ristoratore.
+    func conferma(_ a: Anteprima) async throws {
+        let corpo = try JSONSerialization.jsonObject(with: JSONEncoder().encode(a))
+        _ = try await invia(["conferma": corpo])
+    }
 
-        let (data, response) = try await session.data(for: request)
+    private func anteprima(_ corpo: [String: Any]) async throws -> Anteprima {
+        let data = try await invia(corpo)
+        return try JSONDecoder().decode(AnteprimaResponse.self, from: data).anteprima
+    }
+
+    private func invia(_ corpo: [String: Any]) async throws -> Data {
+        var body = corpo
+        body["locale_id"] = localeId
+        var req = URLRequest(url: baseURL.appending(path: "api/onboarding-import"))
+        req.httpMethod = "POST"
+        req.timeoutInterval = 150 // la lettura di un menù lungo con Opus può richiedere un paio di minuti
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("Bearer \(try await sessionToken())", forHTTPHeaderField: "Authorization")
+        req.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        let (data, response) = try await session.data(for: req)
         let status = (response as? HTTPURLResponse)?.statusCode ?? 0
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-
         guard (200..<300).contains(status) else {
-            if let err = try? decoder.decode(ServerError.self, from: data) {
-                throw ImportError.server(code: err.error, message: err.message ?? err.error)
+            if let err = try? JSONDecoder().decode([String: String].self, from: data), let msg = err["error"] {
+                throw ImportError.server(msg)
             }
             throw ImportError.http(status)
         }
-        return try decoder.decode(MenuImportResponse.self, from: data)
-    }
-
-    private struct ServerError: Decodable {
-        let error: String
-        let message: String?
+        return data
     }
 }
 
 private extension UIImage {
-    /// Lato lungo max ~1600 px: oltre, il modello ridimensiona comunque e paghi solo upload.
-    func resizedForUpload(maxSide: CGFloat = 1600) -> UIImage {
-        let longest = max(size.width, size.height)
-        guard longest > maxSide else { return self }
-        let scale = maxSide / longest
-        let target = CGSize(width: size.width * scale, height: size.height * scale)
-        return UIGraphicsImageRenderer(size: target).image { _ in draw(in: CGRect(origin: .zero, size: target)) }
+    func ridimensionata(latoMax: CGFloat = 1600) -> UIImage {
+        let lato = max(size.width, size.height)
+        guard lato > latoMax else { return self }
+        let k = latoMax / lato
+        let dim = CGSize(width: size.width * k, height: size.height * k)
+        return UIGraphicsImageRenderer(size: dim).image { _ in draw(in: CGRect(origin: .zero, size: dim)) }
     }
 }
