@@ -88,35 +88,37 @@ Cifre in euro, con 1 $ ≈ 0,93 €. Tutte **[Ipotesi]** da verificare sui consu
 
 ### 6a. Quanto costa un ristoratore che prova gratis (non paga)
 
-Locale tipo: menù da 60 piatti e carta da 40 vini.
+Locale tipo: menù da 60 piatti e carta da 40 vini. Traduzioni con **Haiku 5.5** dal 24/11/2026.
 
-| Operazione | Modello | Costo stimato |
-|---|---|---|
-| Lettura di menù e carta (2 tentativi) | Opus 5.5 | ~0,45 € |
-| Schede dei 40 vini ("Arricchisci") | Opus 5.5 | ~0,30 € |
-| Profilo sensoriale dei 60 piatti | Opus 5.5 | ~0,17 € |
-| Abbinamenti pronti per 60 piatti | codice + Haiku 5.5 | ~0,02 € |
-| Traduzione dei 60 piatti in 7 lingue | Opus 5.5 | ~0,65 € |
-| 20 prove del sommelier in anteprima | Haiku 5.5 | ~0,03 € |
-| **Totale per prova** | | **~1,6 €** |
+| Operazione | Modello | Costo | Base |
+|---|---|---|---|
+| Lettura di menù e carta (2 tentativi) | Opus 5.5 | ~0,45 € | stima |
+| Schede dei 40 vini ("Arricchisci") | Opus 5.5 | ~0,30 € | stima |
+| Profilo sensoriale dei 60 piatti | Opus 5.5 | ~0,17 € | stima |
+| Abbinamenti pronti per 60 piatti | codice + Haiku 5.5 | ~0,02 € | stima |
+| Traduzione dei 60 piatti in 7 lingue | **Haiku 5.5** | **~0,03 €** (con Opus erano ~0,69 €) | **misurato**: 0,0005 $ a piatto con Haiku, 0,0124 $ con Opus |
+| 20 prove del sommelier in anteprima | codice + Haiku 5.5 | ~0,01 € | stima |
+| **Totale per prova** | | **~1,0 €** (prima ~1,6 €) | |
 
-- **Tetto massimo per prova.** I limiti nel codice (`lib/prova.ts`) fermano chi esagera: circa 6 € se si esaurisce tutto, più al massimo ~2 €/mese se prova il sommelier ogni giorno.
-- **Costo per cliente acquisito.** Se si abbona 1 ristoratore su 10 [Ipotesi], ogni cliente pagante costa ~16 € di prove gratuite: si recupera nel primo mese.
-- **Leva di risparmio:** la traduzione è la voce più cara della prova. Spostarla da Opus a Haiku 5.5 la porterebbe a pochi centesimi. Va prima provata la qualità sui nomi dei piatti.
+- **Tetto massimo per prova:** circa 4 € (prima ~6 €), più al massimo ~1 €/mese se prova il sommelier ogni giorno.
+- **Costo per cliente acquisito:** se si abbona 1 ristoratore su 10 [Ipotesi], circa **10 €** di prove gratuite (prima ~16 €).
+- **Qualità della traduzione Haiku.** Prova su 10 piatti × 7 lingue dopo la revisione delle istruzioni: nessun ingrediente inventato, nessun termine sbagliato, nessun alfabeto mescolato. Il campione è piccolo: controlla a campione i primi menù tradotti. Con `MODELLO_TRADUZIONE=opus` su Vercel si torna a Opus in un minuto.
 
-### 6b. Margine di un cliente pagante
+### 6b. Margine di un cliente pagante (ricalcolato)
 
-Ipotesi: 20 clienti; prezzo **IVA esclusa** (se 39 € è IVA inclusa, il netto è 31,97 €).
+Ipotesi: 20 clienti.
 
 | Voce al mese per cliente | Mensile 39 € | Annuale 385 € (= 32,08 €/mese) |
 |---|---|---|
-| Commissione Stripe (carte UE ~1,5% + 0,25 €) **[Probabile]** | −0,84 € | −0,50 € |
-| AI: sommelier (~3.600 ricerche, metà dalla cache) + aggiornamenti menù | −1,5 / −2,5 € | −1,5 / −2,5 € |
-| Infrastruttura (Vercel Pro + Supabase Pro ≈ 42 €/mese divisi per 20) | −2,10 € | −2,10 € |
-| **Margine** | **~33,5–34,5 € (≈ 87%)** | **~27–28 € (≈ 85%)** |
+| Commissione Stripe (~1,5% + 0,25 €) **[Probabile]** | −0,84 € | −0,50 € |
+| AI: sommelier (3.600 ricerche, metà dalla cache) + aggiornamenti e traduzioni | −1,3 / −2,3 € | −1,3 / −2,3 € |
+| Infrastruttura (≈ 42 €/mese divisi per 20 clienti) | −2,10 € | −2,10 € |
+| **Margine, prezzo IVA esclusa** | **~33,8–34,8 € (≈ 88%)** | **~27,2–28,2 € (≈ 86%)** |
+| **Margine se 39 € / 385 € sono IVA inclusa** (netto 31,97 € / 26,30 €) | ~26,7–27,7 € | ~21,4–22,4 € |
 
-- **Costi fissi:** infrastruttura ~42 €/mese, Apple ~8 €/mese, iubenda ~20 €/mese. Bastano **3 clienti paganti** a coprirli.
-- **Abbonamento acquistato dentro l'app iOS:** Apple trattiene il 15% (−5,85 €/mese). Vendendolo dal sito ai ristoranti (B2B) la commissione è 0, se App Review lo accetta **[Ipotesi]**.
+- **Effetto del passaggio a Haiku:** sul cliente pagante cambia poco (pochi centesimi al mese, perché le traduzioni si rifanno solo quando cambia il menù). Il guadagno vero è sulla prova gratuita: −40% di costo per prova.
+- **Costi fissi** (~70 €/mese tra infrastruttura, Apple e iubenda): si coprono con **3 clienti**.
+- **Cosa conta di più:** con 100 clienti l'infrastruttura scende a ~0,42 €/cliente e il margine supera il 90%. A quel punto la voce principale diventa il sommelier: va misurata sui dati reali della console Anthropic dopo il primo mese.
 
 ### 6c. Da fare per passare a 39 € / 385 €
 
