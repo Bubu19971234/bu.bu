@@ -154,11 +154,13 @@ Prima non c'era nessun tetto per gli abbonati: un cliente poteva rilanciare lett
 | Uso al mese | Tetto | Costo massimo | Uso tipico (60 coperti al giorno) |
 |---|---|---|---|
 | Consigli del sommelier + bartender | 6.000 (≈200 al giorno) | 2,79 € (tutti fuori cache) | ~550 → ~0,26 € |
-| Letture di menù o carta | 5 | 1,63 € | 0–1 → ~0,14 € |
-| Schede vino/drink | 100 | 0,65 € | ~10 → 0,07 € |
-| Ricalcoli abbinamenti (8 piatti l'uno) | 30 | 0,66 € | 1–2 → 0,04 € |
-| Traduzioni di piatti | 300 | 0,14 € | ~10 → 0,01 € |
-| **Totale AI** | | **~5,9 € (caso peggiore)** | **~0,5 €** |
+| Letture di menù o carta | 3 | 0,98 € | 0–1 → ~0,14 € |
+| Schede vino/drink | 200 | 1,30 € | ~10 → 0,07 € |
+| Ricalcoli abbinamenti (8 piatti l'uno) | 60 | 1,31 € | 1–2 → 0,04 € |
+| Traduzioni di piatti | 600 | 0,28 € | ~10 → 0,01 € |
+| **Totale AI** | | **~6,7 € (caso peggiore)** | **~0,5 €** |
+
+Tetti aggiornati il 24/11/2026 su richiesta: letture di menù abbassate a 3, schede, ricalcoli e traduzioni alzati.
 
 Oltre il tetto: il ristoratore riceve un messaggio chiaro ("si azzerano il 1° del mese, se ti servono scrivici"); al tavolo il cliente legge "chiedi al personale". L'admin non ha limiti. I contatori sono nella tabella protetta `prova_consumi` (non modificabile con la chiave pubblica).
 
@@ -169,9 +171,9 @@ Costi fissi per cliente: commissione Stripe (0,84 € mensile / 0,50 € annuale
 | Scenario | 39 €/mese IVA esclusa | 39 € IVA inclusa (netto 31,97 €) | 385 €/anno IVA esclusa (32,08 €/mese) |
 |---|---|---|---|
 | Uso tipico (AI ~0,5 €) | **35,6 € → 91%** | 28,5 € → 89% | 29,0 € → 90% |
-| Caso peggiore (tutti i tetti, AI ~5,9 €) | 30,2 € → 77% | 23,1 € → 72% | 23,6 € → 73% |
+| Caso peggiore (tutti i tetti, AI ~6,7 €) | 29,4 € → 75% | 22,4 € → 70% | 22,8 € → 71% |
 
-**[Certo]** i costi unitari; **[Probabile]** l'uso tipico (60 coperti al giorno, 30% dei tavoli usa il sommelier); **[Ipotesi]** il costo dei menù molto grandi. Anche nel caso peggiore il margine resta sopra il 70%. La voce da tenere d'occhio è il sommelier di un locale molto frequentato: i log `[uso-ai]` permettono di verificarlo sui dati veri dopo il primo mese.
+**[Certo]** i costi unitari; **[Probabile]** l'uso tipico (60 coperti al giorno, 30% dei tavoli usa il sommelier); **[Ipotesi]** il costo dei menù molto grandi. Anche nel caso peggiore il margine resta intorno al 70% o sopra. La voce da tenere d'occhio è il sommelier di un locale molto frequentato: i log `[uso-ai]` permettono di verificarlo sui dati veri dopo il primo mese.
 
 ### 7d. Costo di una prova gratuita (misurato)
 
