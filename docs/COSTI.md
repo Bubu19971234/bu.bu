@@ -128,3 +128,51 @@ Oggi codice e Stripe sono a **35 € / 350 €** **[Certo]**. I passaggi, in ord
 3. Cambia `LISTINO.starter` in `lib/piano.ts` di ai-som-saas: è una riga, la faccio io quando i prezzi esistono.
 
 Gli abbonati attuali restano al prezzo vecchio finché non li sposti tu in Stripe.
+
+## 7. Quanti utilizzi può fare un ristorante restando in margine (24/11/2026)
+
+### 7a. Costi MISURATI per singola operazione
+
+Dal 24/11/2026 ogni chiamata AI scrive nei log di Vercel una riga `[uso-ai]` con token e costo. Misure sull'anteprima con il menù di prova Kintsugi (24 piatti, 25 bevande) **[Certo]** (token reali × listino):
+
+| Operazione | Modello | Costo misurato |
+|---|---|---|
+| Lettura di menù e carta (24 piatti + 25 bevande) | Opus 5.5 | 0,14–0,15 $ a lettura |
+| Scheda di un vino o di un drink ("Arricchisci") | Opus 5.5 | 0,005–0,011 $ (media ~0,007 $) |
+| Profilo sensoriale dei piatti | Opus 5.5 | ~0,0195 $ ogni 8 piatti (~0,0024 $ a piatto) |
+| Frasi di un abbinamento (sommelier) | Haiku 5.5 | 0,0004–0,0005 $ |
+| Consiglio del bartender (cocktail) | Haiku 5.5 | 0,0002–0,0004 $ |
+| Traduzione di un piatto in 7 lingue | Haiku 5.5 | ~0,0005 $ (misura del 24/11) |
+| Consiglio servito dalla cache | nessuno | 0 $ |
+
+Un menù grande (100+ voci) costa in lettura circa 2–2,5 volte il menù di prova **[Probabile]**: stimato fino a 0,35 $.
+
+### 7b. Tetti mensili per i locali abbonati (in `lib/prova.ts`, `LIMITI_MESE`)
+
+Prima non c'era nessun tetto per gli abbonati: un cliente poteva rilanciare letture con Opus senza limiti. Ora:
+
+| Uso al mese | Tetto | Costo massimo | Uso tipico (60 coperti al giorno) |
+|---|---|---|---|
+| Consigli del sommelier + bartender | 6.000 (≈200 al giorno) | 2,79 € (tutti fuori cache) | ~550 → ~0,26 € |
+| Letture di menù o carta | 5 | 1,63 € | 0–1 → ~0,14 € |
+| Schede vino/drink | 100 | 0,65 € | ~10 → 0,07 € |
+| Ricalcoli abbinamenti (8 piatti l'uno) | 30 | 0,66 € | 1–2 → 0,04 € |
+| Traduzioni di piatti | 300 | 0,14 € | ~10 → 0,01 € |
+| **Totale AI** | | **~5,9 € (caso peggiore)** | **~0,5 €** |
+
+Oltre il tetto: il ristoratore riceve un messaggio chiaro ("si azzerano il 1° del mese, se ti servono scrivici"); al tavolo il cliente legge "chiedi al personale". L'admin non ha limiti. I contatori sono nella tabella protetta `prova_consumi` (non modificabile con la chiave pubblica).
+
+### 7c. Margine con i tetti
+
+Costi fissi per cliente: commissione Stripe (0,84 € mensile / 0,50 € annuale) + infrastruttura 2,10 € (a 20 clienti).
+
+| Scenario | 39 €/mese IVA esclusa | 39 € IVA inclusa (netto 31,97 €) | 385 €/anno IVA esclusa (32,08 €/mese) |
+|---|---|---|---|
+| Uso tipico (AI ~0,5 €) | **35,6 € → 91%** | 28,5 € → 89% | 29,0 € → 90% |
+| Caso peggiore (tutti i tetti, AI ~5,9 €) | 30,2 € → 77% | 23,1 € → 72% | 23,6 € → 73% |
+
+**[Certo]** i costi unitari; **[Probabile]** l'uso tipico (60 coperti al giorno, 30% dei tavoli usa il sommelier); **[Ipotesi]** il costo dei menù molto grandi. Anche nel caso peggiore il margine resta sopra il 70%. La voce da tenere d'occhio è il sommelier di un locale molto frequentato: i log `[uso-ai]` permettono di verificarlo sui dati veri dopo il primo mese.
+
+### 7d. Costo di una prova gratuita (misurato)
+
+Kintsugi (24 piatti, 25 bevande): 2 letture 0,29 $ + 11 schede vino 0,08 $ + 14 schede drink ~0,08 $ + profili e abbinamenti di 24 piatti 0,07 $ = **~0,52 $ (~0,48 €)** **[Certo]**. Riportato a 60 piatti e 40 vini: **~1 €**, in linea con la stima della sezione 6a.
