@@ -81,3 +81,48 @@ Tutte le cifre sono **[Ipotesi]**: vanno verificate con i dati reali di consumo 
 | Legale | 500–2.000 € |
 
 **Totale: ~1.800–3.300 €/anno. Con la scelta dei vini fatta dal codice, l'AI non è più la voce principale [Ipotesi].**
+
+## 6. Prova gratuita e abbonamento a 39 €/mese o 385 €/anno
+
+Cifre in euro, con 1 $ ≈ 0,93 €. Tutte **[Ipotesi]** da verificare sui consumi reali della console Anthropic, salvo dove indicato.
+
+### 6a. Quanto costa un ristoratore che prova gratis (non paga)
+
+Locale tipo: menù da 60 piatti e carta da 40 vini.
+
+| Operazione | Modello | Costo stimato |
+|---|---|---|
+| Lettura di menù e carta (2 tentativi) | Opus 5.5 | ~0,45 € |
+| Schede dei 40 vini ("Arricchisci") | Opus 5.5 | ~0,30 € |
+| Profilo sensoriale dei 60 piatti | Opus 5.5 | ~0,17 € |
+| Abbinamenti pronti per 60 piatti | codice + Haiku 5.5 | ~0,02 € |
+| Traduzione dei 60 piatti in 7 lingue | Opus 5.5 | ~0,65 € |
+| 20 prove del sommelier in anteprima | Haiku 5.5 | ~0,03 € |
+| **Totale per prova** | | **~1,6 €** |
+
+- **Tetto massimo per prova.** I limiti nel codice (`lib/prova.ts`) fermano chi esagera: circa 6 € se si esaurisce tutto, più al massimo ~2 €/mese se prova il sommelier ogni giorno.
+- **Costo per cliente acquisito.** Se si abbona 1 ristoratore su 10 [Ipotesi], ogni cliente pagante costa ~16 € di prove gratuite: si recupera nel primo mese.
+- **Leva di risparmio:** la traduzione è la voce più cara della prova. Spostarla da Opus a Haiku 5.5 la porterebbe a pochi centesimi. Va prima provata la qualità sui nomi dei piatti.
+
+### 6b. Margine di un cliente pagante
+
+Ipotesi: 20 clienti; prezzo **IVA esclusa** (se 39 € è IVA inclusa, il netto è 31,97 €).
+
+| Voce al mese per cliente | Mensile 39 € | Annuale 385 € (= 32,08 €/mese) |
+|---|---|---|
+| Commissione Stripe (carte UE ~1,5% + 0,25 €) **[Probabile]** | −0,84 € | −0,50 € |
+| AI: sommelier (~3.600 ricerche, metà dalla cache) + aggiornamenti menù | −1,5 / −2,5 € | −1,5 / −2,5 € |
+| Infrastruttura (Vercel Pro + Supabase Pro ≈ 42 €/mese divisi per 20) | −2,10 € | −2,10 € |
+| **Margine** | **~33,5–34,5 € (≈ 87%)** | **~27–28 € (≈ 85%)** |
+
+- **Costi fissi:** infrastruttura ~42 €/mese, Apple ~8 €/mese, iubenda ~20 €/mese. Bastano **3 clienti paganti** a coprirli.
+- **Abbonamento acquistato dentro l'app iOS:** Apple trattiene il 15% (−5,85 €/mese). Vendendolo dal sito ai ristoranti (B2B) la commissione è 0, se App Review lo accetta **[Ipotesi]**.
+
+### 6c. Da fare per passare a 39 € / 385 €
+
+Oggi codice e Stripe sono a **35 € / 350 €** **[Certo]**. I passaggi, in ordine:
+1. In Stripe crea due nuovi prezzi ricorrenti per il prodotto AI Som: 39 €/mese e 385 €/anno.
+2. Su Vercel aggiorna `STRIPE_PRICE_STARTER_MONTHLY` e `STRIPE_PRICE_STARTER_ANNUAL` con i nuovi ID prezzo.
+3. Cambia `LISTINO.starter` in `lib/piano.ts` di ai-som-saas: è una riga, la faccio io quando i prezzi esistono.
+
+Gli abbonati attuali restano al prezzo vecchio finché non li sposti tu in Stripe.
