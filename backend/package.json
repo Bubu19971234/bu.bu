@@ -1,0 +1,24 @@
+{
+  "name": "ai-som-menu-import",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend AI som: clonazione automatica del menu da link (QR), PDF o foto in JSON strutturato.",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "import": "tsx src/cli.ts"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.13.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
