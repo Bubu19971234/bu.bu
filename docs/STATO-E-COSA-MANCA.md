@@ -18,7 +18,7 @@
    - I prezzi nuovi (39,90 e 390) esistono solo in modalità di prova, nell'account condiviso con gli altri siti. In produzione il pagamento resta **chiuso**: il sito vede ancora i prezzi vecchi (35 e 350) e non apre il checkout se l'importo non coincide con il listino.
    - Da fare: account Stripe nuovo solo per AI Som, configurato con il prompt di `STORE-STRIPE-DUNS.md` (sezione 1), poi le due chiavi su Vercel e una prova reale a 0 € con il codice sconto.
    - Stripe Tax spento finché il commercialista non conferma il regime (forfettario o ordinario).
-   - Codice pronto sul ramo `claude/stripe-chiavi-portale`, da pubblicare: prezzi trovati per lookup key (niente ID da copiare su Vercel), checkout in italiano con partita IVA, voce «Abbonamento e fatture» nel pannello.
+   - In produzione: prezzi trovati per lookup key (niente ID da copiare su Vercel), checkout in italiano con partita IVA, voce «Abbonamento e fatture» nel pannello, locale acceso durante i tentativi di pagamento.
 2. **Testi legali.** `NEXT_PUBLIC_PRIVACY_URL` e `NEXT_PUBLIC_TERMINI_URL` non sono impostate: alla registrazione si accettano termini che non si possono leggere. Servono i testi approvati dall'avvocato, pubblicati, e i due link su Vercel.
 3. **Prova gratuita chiusa.** `PROVA_APERTA` e `NEXT_PUBLIC_PROVA_APERTA` non sono impostate: in produzione nessuno può registrarsi da solo. È voluto finché non ci sono i testi legali; poi vanno messe a `1`.
 4. **Fattura elettronica (SdI).** Stripe non la invia: serve un collegamento (Fatture in Cloud, A-Cube…) e la conferma del commercialista sull'IVA. `STRIPE_TAX` non è impostata.
@@ -30,9 +30,9 @@
 ## 3. Per pubblicare sugli store
 
 1. Apple Developer Program: **fatto** il 26/11/2026 (come persona). Google Play Console: da aprire, dopo la risposta sul D-U-N-S (`STORE-STRIPE-DUNS.md`, sezioni 3 e 3-bis).
-2. Compilazione: iOS su Mac con Xcode o servizio nel cloud; Android con Android Studio. I progetti sono in `ios/` e `android/`.
+2. Compilazione: **automatica su GitHub**, senza Mac (iOS verso TestFlight, Android APK e pacchetto per Play). Dettagli in `APP-STORE-PRONTEZZA.md`.
 3. Prova su telefoni veri: finora tutto è stato provato su telefoni simulati.
-4. Icone e schermata di avvio definitive; screenshot per gli store.
+4. Icona e schermata di avvio: **fatte**. Screenshot definitivi a ridosso dell'invio.
 5. Scheda privacy (App Store) e Data safety (Google Play); classificazione per età (alcolici).
 6. Account di prova per i revisori.
 7. Notifiche (segnalazioni dei clienti, menù pronto): servono la chiave APNs di Apple e un progetto Firebase.
@@ -40,7 +40,7 @@
 
 ## 4. Da completare nel prodotto
 
-- **Grafica dalle prove di ChatGPT:** fatte Home (iOS e Android), accesso, barra in basso, Altro. Mancano la configurazione guidata, la modalità iPad a due colonne e le schermate non ancora disegnate (Menù, Carta, Clienti, QR).
+- **Grafica:** fatte Home, accesso, barra in basso, Altro, Menù, Carta, Clienti, QR e configurazione guidata. Mancano la modalità iPad a due colonne per il cliente e le rifiniture delle schermate secondarie (Abbinamenti, Grafica, Card, Anagrafica).
 - **Accesso con Google e Apple:** codice pronto e spento; mancano le chiavi (`ACCESSO-GOOGLE-APPLE.md`). Nell'app servirà la versione nativa e la revoca Apple alla cancellazione dell'account.
 - **Dominio:** il sito gira su `ai-som-saas.vercel.app`. Per usare `ai-som.it` va collegato il dominio a Vercel, impostato `NEXT_PUBLIC_SITE_URL` e aggiornato l'elenco degli indirizzi consentiti in Supabase.
 - **Scheda «Marginalità · Non incluso»:** nascosta nell'app, ancora visibile sul sito.

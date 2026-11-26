@@ -10,20 +10,21 @@
 | Prezzi e acquisti dentro l'app | **Assenti**, verificato simulando l'app: nessun prezzo né pulsante di pagamento in Home. |
 | Cancellazione dell'account | **Fatta** nell'app (Altro → Cancella account) e spiegata nella pagina pubblica `/elimina-account`. |
 | Pagina di assistenza | **Fatta**: `/assistenza`. |
+| Schermate Menù, Carta, Clienti, QR, configurazione guidata | **Rifatte** nello stile di Home e pubblicate: niente tabelle fuori schermo, niente selettore di file in inglese. Provate su telefono simulato, in produzione. |
 | Provate su telefoni veri | **No.** Finora solo simulazioni: è il primo passo da fare. |
 
-Il codice è sul ramo `claude/app-store-pronta` (non ancora in produzione).
+Tutto è in produzione dal 26/11/2026 (PR #30 e #31 del repository `ai-som-saas`).
 
 ## 2. Cosa manca prima dell'invio agli store
 
 ### Bloccanti
-1. **Schermate Menù, Carta, Clienti, QR e configurazione guidata.** Funzionano, ma hanno ancora lo stile del sito: testo fitto, tabelle che escono dallo schermo, il selettore di file del browser in inglese («Choose File»). Con Home e Altro già rifatte, l'insieme non è omogeneo. Apple rifiuta le app che sembrano un sito dentro una cornice (regola 4.2): è il rischio più alto.
-2. **Informativa privacy pubblicata.** Entrambi gli store chiedono il link. Dipende dai testi dell'avvocato.
-3. **Prova su telefoni veri** (sezione 3).
-4. **Account Google Play** (dopo la risposta sul D-U-N-S) e **scheda dell'app su App Store Connect** (sezione 4).
-5. **Account dimostrativo per i revisori**: un locale attivo con menù e carta, con email e password da indicare nella scheda. Lo preparo io a ridosso dell'invio.
+1. **Informativa privacy pubblicata.** Entrambi gli store chiedono il link. Dipende dai testi dell'avvocato.
+2. **Prova su telefoni veri** (sezione 3).
+3. **Account Google Play** (dopo la risposta sul D-U-N-S) e **scheda dell'app su App Store Connect** (sezione 4).
+4. **Account dimostrativo per i revisori**: un locale attivo con menù e carta, con email e password da indicare nella scheda. Lo preparo io a ridosso dell'invio.
 
 ### Non bloccanti
+- Rifiniture grafiche rimaste: schermate secondarie (Abbinamenti, Grafica, Card, Anagrafica) e menù laterale su iPad e computer, che usano ancora in parte lo stile precedente. Resta il rischio, non eliminabile del tutto, che Apple consideri l'app «un sito in una cornice» (regola 4.2) [Ipotesi sull'esito].
 - Accesso con Apple e Google: spento, quindi non richiesto. Se un giorno accendi Google, Apple pretende anche «Accedi con Apple» (regola 4.8).
 - Notifiche: non previste nella prima versione.
 - Dominio: l'app apre `ai-som-saas.vercel.app`. Passare a `ai-som.it` in seguito richiede un aggiornamento dell'app; l'indirizzo attuale continua comunque a funzionare.
@@ -69,7 +70,7 @@ Questi valori sono segreti: si inseriscono solo in GitHub, mai in chat o in emai
 ### App Store (Apple)
 - **Scheda:** nome «AI Som», sottotitolo, descrizione, parole chiave (sezione 5), categoria «Food & Drink» (secondaria «Business»).
 - **Indirizzi:** assistenza `https://ai-som-saas.vercel.app/assistenza`; privacy: il link dei testi legali.
-- **Screenshot:** iPhone 6,9" (1320×2868) e iPad 13" (2064×2752). Li genero io dalle schermate definitive.
+- **Screenshot:** iPhone 6,9" (1320×2868) e iPad 13" (2064×2752). Una prima serie è già generata dalle schermate nuove; la rifaccio con il locale dimostrativo a ridosso dell'invio.
 - **Privacy dell'app:** dati raccolti = email, nome del locale, contenuti caricati (menù, foto); collegati all'utente; non usati per tracciamento.
 - **Classificazione per età:** riferimenti ad alcolici «poco frequenti».
 - **Note per il revisore:** account dimostrativo; l'app è per ristoratori già clienti; l'abbonamento si attiva sul sito; nessun acquisto in app.
@@ -102,8 +103,8 @@ Questi valori sono segreti: si inseriscono solo in GitHub, mai in chat o in emai
 
 ## 6. Ordine consigliato
 
-1. Provi le app (Android subito, iPhone con TestFlight).
-2. Io rifaccio le schermate Menù, Carta, Clienti, QR e configurazione guidata nello stile di Home.
-3. Avvocato → testi legali pubblicati.
-4. Screenshot definitivi, account per i revisori, schede compilate.
-5. Invio: Apple (revisione di norma in pochi giorni), Google (test chiuso se l'account è personale).
+1. Provi l'app su iPhone con TestFlight (sezione 3): servono i 4 dati in GitHub e la scheda dell'app su App Store Connect.
+2. Avvocato → testi legali pubblicati.
+3. Stripe in modalità reale nell'account dedicato (`STORE-STRIPE-DUNS.md`, sezione 1).
+4. Account per i revisori, screenshot definitivi, schede compilate.
+5. Invio: Apple (revisione di norma in pochi giorni), Google quando c'è l'account (test chiuso se è personale).

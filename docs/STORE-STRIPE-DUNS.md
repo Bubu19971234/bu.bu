@@ -68,7 +68,7 @@ L'agente di Stripe ha configurato tutto in modalità di prova **nell'account con
   - Come: in Stripe, menù dell'account in alto a sinistra → **Nuovo account** → nome «AI Som» → completa l'attivazione con gli stessi dati dell'impresa.
 - **Stripe Tax resta spento** finché il commercialista non conferma il regime. In regime forfettario l'IVA non si applica e la registrazione IVA su Stripe Tax sarebbe sbagliata. Sul sito il calcolo dell'IVA si accende solo con `STRIPE_TAX=1`.
 - **La prova completa in modalità di test non si può fare dal sito**: il sito usa le chiavi reali e non vede i prezzi di prova (verificato: la ricerca per lookup key non trova nulla). Si prova in modalità reale con un codice sconto del 100%, a costo zero.
-- **Gli ID dei prezzi non vanno più copiati su Vercel**: il sito cerca i prezzi per lookup key (`aisom_mensile`, `aisom_annuale`) e controlla che l'importo sia quello del listino. Vale da quando la modifica è pubblicata (ramo `claude/stripe-chiavi-portale`).
+- **Gli ID dei prezzi non vanno più copiati su Vercel**: il sito cerca i prezzi per lookup key (`aisom_mensile`, `aisom_annuale`) e controlla che l'importo sia quello del listino. In produzione dal 26/11/2026.
 - **Nel pannello c'è «Abbonamento e fatture»** (Altro → Account, solo sul sito e solo per chi ha pagato online): apre il portale clienti di Stripe. Stessa modifica.
 
 Prompt per l'agente di Stripe, **da usare nell'account nuovo**:
@@ -117,9 +117,9 @@ Nell'account vecchio basta una riga all'agente: «Disattiva l'endpoint webhook "
 
 **Prova reale a 0 €:** registra un locale di prova → «Attiva abbonamento» → codice `PROVA100` → controlla che il locale diventi attivo, che arrivi l'email, che «Abbonamento e fatture» apra il portale e che la disdetta spenga il locale a fine periodo.
 
-**Due scelte ancora aperte:**
-- **Primo pagamento fallito:** oggi il sito spegne il locale al primo addebito non riuscito e lo riaccende quando il pagamento va a buon fine. Con i tentativi automatici attivi conviene lasciarlo acceso fino all'annullamento dell'abbonamento: un ristorante non resta senza menù per una carta scaduta.
-- **Regime forfettario:** se è il tuo caso, sul sito va tolta la dicitura «IVA esclusa» accanto ai prezzi.
+**Deciso il 26/11/2026:** al primo pagamento fallito il locale resta acceso; si spegne solo se Stripe annulla l'abbonamento dopo l'ultimo tentativo. Per questo il punto 5 del prompt («annulla dopo l'ultimo tentativo») è obbligatorio.
+
+**Ancora aperto:** se sei in regime forfettario, sul sito va tolta la dicitura «IVA esclusa» accanto ai prezzi.
 
 ## 2. Account degli store: link e costi
 
