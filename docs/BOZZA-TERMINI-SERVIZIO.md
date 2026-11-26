@@ -1,4 +1,4 @@
-# BOZZA v2 (26/11/2026): termini di servizio di AI Som
+# BOZZA v3 (26/11/2026): termini di servizio di AI Som
 
 > **Bozza da far rivedere a un legale prima della pubblicazione.** Le parti tra **[ ]** sono da verificare o completare. Una volta pubblicata, su Vercel si imposta `NEXT_PUBLIC_TERMINI_URL`, poi `PROVA_APERTA=1` e `NEXT_PUBLIC_PROVA_APERTA=1`.
 >
@@ -19,10 +19,10 @@ AI Som è un servizio di Oluvida di Tinti Marco **[dati completi]**. Offre a loc
 - La prova ha limiti di utilizzo; possiamo modificarli o sospenderla in caso di abuso.
 
 ## 3. Abbonamento
-- **Prezzo:** 39,90 € al mese oppure 390 € all'anno, IVA esclusa.
+- **Prezzo:** 39,90 € al mese oppure 390 € all'anno, IVA esclusa **[da confermare con il commercialista: in regime forfettario l'IVA non si applica e la dicitura va tolta]**.
 - **Pagamento:** dal sito, tramite Stripe; l'abbonamento si rinnova automaticamente. Le app per iPhone e Android non vendono l'abbonamento.
-- **Disdetta:** in qualsiasi momento, con effetto alla scadenza del periodo pagato.
-- **Mancato rinnovo:** se il pagamento non va a buon fine, menù, sommelier e bartender diventano non visibili ai clienti; i dati restano nell'account.
+- **Disdetta e fatture:** dal sito, in «Altro» → «Abbonamento e fatture», in qualsiasi momento; la disdetta ha effetto alla scadenza del periodo pagato. Da lì si aggiorna anche il metodo di pagamento e si passa da mensile ad annuale e viceversa.
+- **Mancato rinnovo:** se un pagamento non va a buon fine, riproviamo automaticamente per alcuni giorni e ti avvisiamo via email; nel frattempo il servizio resta attivo. Se anche l'ultimo tentativo fallisce l'abbonamento viene annullato: menù, sommelier e bartender non sono più visibili ai clienti; i dati restano nell'account.
 - **Uso corretto:** l'abbonamento comprende un uso mensile ampio (consigli, letture del menù, schede, traduzioni) indicato nel pannello. Oltre questi limiti il servizio può essere sospeso fino al mese successivo o ampliato su richiesta.
 
 ## 4. I contenuti che carichi
@@ -54,7 +54,7 @@ AI Som è un servizio di Oluvida di Tinti Marco **[dati completi]**. Offre a loc
 
 ## 9. Account e sicurezza
 - Le credenziali sono personali.
-- Puoi cancellare l'account e i dati dall'app o chiedendolo a **[email]**.
+- Puoi cancellare l'account e i dati dall'app o dal sito («Altro» → «Cancella account»), oppure chiedendolo a **info@ai-som.it [da confermare]**. La cancellazione disdice subito l'eventuale abbonamento, senza altri addebiti **[per il legale: prevedere espressamente che il periodo già pagato non viene rimborsato, se è questa la scelta]**.
 
 ## 10. Modifiche
 Possiamo aggiornare questi termini; le modifiche rilevanti ti saranno comunicate via email con almeno 30 giorni di anticipo.

@@ -1,4 +1,4 @@
-# BOZZA v2 (26/11/2026): informativa privacy di AI Som — area ristoratori, pagine clienti e app
+# BOZZA v3 (26/11/2026): informativa privacy di AI Som — area ristoratori, pagine clienti e app
 
 > **Bozza da far rivedere a un legale prima della pubblicazione.** Le parti tra **[ ]** sono da verificare o completare.
 >
@@ -71,5 +71,6 @@ Il servizio è riservato a maggiorenni che lo usano per la propria attività. Le
 
 ### 6. I tuoi diritti
 Accesso, rettifica, cancellazione, limitazione, portabilità, opposizione e reclamo al Garante privacy.
-- **Cancellazione dell'account dall'app:** pulsante "Elimina account" nelle impostazioni **[da realizzare: obbligatorio per Apple (5.1.1) e Google]**.
-- Oppure scrivendo a **[email di contatto]**.
+- **Cancellazione dell'account:** dall'app o dal sito, in «Altro» → «Cancella account». Cancella subito il locale, il menù, la carta, la grafica, le statistiche, i file caricati e l'accesso; se c'è un abbonamento attivo viene disdetto. I passaggi sono descritti anche nella pagina pubblica `/elimina-account`.
+- Restano conservati, per gli obblighi fiscali, le fatture e i dati di pagamento già registrati (10 anni).
+- Oppure scrivendo a **info@ai-som.it [da confermare]**: rispondiamo entro 30 giorni.
