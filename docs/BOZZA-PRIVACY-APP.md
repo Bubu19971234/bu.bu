@@ -1,64 +1,75 @@
-# BOZZA: integrazione dell'informativa privacy per l'app AI Som
+# BOZZA v2 (26/11/2026): informativa privacy di AI Som — area ristoratori, pagine clienti e app
 
-> **Bozza da far rivedere a un legale o a iubenda prima di pubblicarla.**
+> **Bozza da far rivedere a un legale prima della pubblicazione.** Le parti tra **[ ]** sono da verificare o completare.
 >
-> - Si aggiunge come nuova sezione alla pagina già esistente `www.ai-som.it/privacy.html`, che oggi copre solo i moduli del sito.
-> - Una volta pubblicata, su Vercel imposta `NEXT_PUBLIC_PRIVACY_URL` con l'indirizzo della pagina.
-> - Fonti dei dati tecnici:
->   - il database Supabase è nella regione `eu-west-1` (Irlanda) **[Certo]**, dato letto dalla configurazione del progetto;
->   - gli altri dati vengono dal codice di ai-som-saas.
+> - Va aggiunta come sezione alla pagina `www.ai-som.it/privacy.html`; poi su Vercel si imposta `NEXT_PUBLIC_PRIVACY_URL`.
+> - Fonti dei dati tecnici: configurazione dei servizi letta il 26/11/2026 e codice di ai-som-saas.
+>   - Database Supabase: regione `eu-west-1` (Irlanda) **[Certo]**.
+>   - Funzioni dell'applicazione su Vercel: spostate dalla regione `iad1` (USA) a `dub1` (Dublino) il 26/11/2026 **[Certo, da verificare dopo il rilascio]**.
+>   - Font: inclusi nell'app o serviti dal nostro dominio; il browser dei visitatori non contatta Google **[Certo, dopo il rilascio del 26/11/2026]**.
 
 ---
 
-## Area riservata, prova gratuita e abbonamento AI Som
+## Area riservata, prova gratuita, abbonamento e pagine dei clienti di AI Som
 
-**Titolare:** lo stesso indicato sopra (Oluvida di Tinti Marco).
+**Titolare del trattamento:** Oluvida di Tinti Marco **[indirizzo, P.IVA, email di contatto]**.
 
-### Quali dati trattiamo e perché
+### 1. Quali dati trattiamo, perché e per quanto
 
 | Dati | Perché | Base giuridica | Per quanto |
 |---|---|---|---|
-| Email, password (cifrata), nome e tipo del locale | Creare e gestire il tuo account, anche in prova gratuita | Contratto o misure precontrattuali | Fino alla cancellazione dell'account; account in prova mai attivati: 12 mesi dall'ultimo accesso |
-| Menù, carta dei vini, prezzi, allergeni, foto o PDF che carichi | Creare il menù digitale e i consigli del sommelier | Contratto | Finché resta nel tuo account |
-| Dati di fatturazione e pagamento | Gestire l'abbonamento | Contratto e obblighi fiscali | 10 anni per gli obblighi fiscali |
-| Indirizzo IP, salvato solo come impronta cifrata (hash) | Limitare le registrazioni abusive alla prova gratuita | Legittimo interesse (sicurezza) | Pochi giorni |
+| Email, password (cifrata), nome e tipo del locale | Creare e gestire l'account, anche in prova gratuita | Contratto o misure precontrattuali | Fino alla cancellazione dell'account; account in prova mai attivati: 12 mesi dall'ultimo accesso |
+| Dati anagrafici e fiscali del locale (ragione sociale, P.IVA, PEC, indirizzo, telefono) | Fatturazione e intestazione dei documenti | Contratto e obblighi fiscali | 10 anni per gli obblighi fiscali |
+| Menù, carta delle bevande, prezzi, allergeni, PDF, foto e link caricati | Creare il menù digitale, le traduzioni e i consigli di sommelier e bartender | Contratto | Finché restano nell'account |
+| Copia della pagina del menù dal sito del locale, logo, colori e font | Mostrare ai clienti il menù con la grafica del locale | Contratto, su dichiarazione del ristoratore di averne i diritti | Finché resta nell'account; la data della dichiarazione dei diritti per la durata del rapporto |
 | Conferma degli allergeni: chi l'ha data e quando | Dimostrare la verifica fatta dal titolare del locale (Reg. UE 1169/2011) | Obbligo legale del locale / legittimo interesse | Per la durata del rapporto |
+| Dati di pagamento | Gestire l'abbonamento | Contratto | Li tratta Stripe; noi conserviamo solo gli identificativi dell'abbonamento |
+| Impronta cifrata (hash) dell'indirizzo IP | Limitare le registrazioni abusive e l'uso eccessivo | Legittimo interesse (sicurezza) | Pochi giorni |
+| Conteggi di utilizzo (letture del menù, consigli) | Applicare i limiti della prova e dell'abbonamento | Contratto | Per la durata del rapporto |
 
-**Clienti del ristorante.** Chi usa il menù o il sommelier al tavolo non crea un account. Registriamo:
-- i piatti cercati;
-- la lingua;
-- il vino scelto;
-- il tavolo.
+### 2. Clienti del ristorante (chi usa il menù al tavolo)
 
-Questi dati servono alle statistiche del locale, senza nome né email. L'indirizzo IP del cliente è usato in forma ridotta solo per limitare l'uso eccessivo.
+Chi usa il menù, il sommelier o il bartender **non crea un account e non inserisce nome né email**. Trattiamo:
+- i piatti cercati o scelti, i gusti indicati (per esempio "fruttato", "analcolico") e la lingua;
+- le eventuali **allergie indicate** per escludere bevande non adatte: **sono dati relativi alla salute** (art. 9 GDPR). Le usiamo solo per calcolare la risposta, non le colleghiamo a una persona e non le conserviamo dopo la risposta **[Da verificare: il testo della richiesta può finire nei log tecnici per qualche giorno]**;
+- il numero del tavolo, se indicato, e la bevanda scelta, per le statistiche del locale;
+- le **segnalazioni** di una risposta sbagliata o inappropriata (motivo, nota facoltativa, lingua), che il locale vede nel suo pannello;
+- l'indirizzo IP, solo per limitare l'uso eccessivo, per pochi giorni.
 
-### Intelligenza artificiale
+**[Per il legale: per i dati sulle allergie valutare la base giuridica (consenso esplicito o art. 9.2.a con avviso al momento della scelta) e il testo dell'avviso da mostrare accanto alla domanda "Allergie o intolleranze?".]**
 
-I menù e le carte che carichi, e le richieste dei clienti al sommelier, sono elaborati da **Anthropic** (modelli Claude) per:
-- leggere i documenti;
+### 3. Intelligenza artificiale
+
+Menù, carte e richieste dei clienti sono elaborati da **Anthropic PBC** (modelli Claude) per:
+- leggere i documenti e la grafica del menù;
 - tradurre;
-- scrivere i consigli.
+- scrivere le frasi dei consigli.
 
-Anthropic agisce come responsabile del trattamento. Secondo i suoi termini commerciali non usa questi contenuti per addestrare i propri modelli.
+Le scelte di vini e cocktail le fa un sistema di calcolo di AI Som; l'intelligenza artificiale scrive solo le frasi, che vengono controllate da un sistema di verifica.
 
-**Non inviare dati personali di terzi dentro i menù.**
+- Anthropic agisce come responsabile del trattamento e, secondo i suoi termini commerciali, non usa questi contenuti per addestrare i modelli.
+- **L'elaborazione avviene negli Stati Uniti** **[Probabile: l'API diretta di Anthropic non offre oggi un'elaborazione solo UE; verificare DPA e impostazioni "inference_geo"]**. Il trasferimento avviene sulla base dell'EU-US Data Privacy Framework e/o delle clausole contrattuali standard **[verificare l'adesione di Anthropic al DPF]**.
+- Inviamo ad Anthropic solo ciò che serve: testi del menù e scelte del cliente, **mai** email, nomi o dati dell'account.
+- Le pagine dei clienti indicano che i consigli sono generati da un'intelligenza artificiale.
 
-I consigli del sommelier sono generati da un'intelligenza artificiale e il cliente ne è informato sulla pagina.
+**Non inserire dati personali di terzi nei menù.**
 
-### Chi tratta i dati per nostro conto
+### 4. Chi tratta i dati per nostro conto e dove
 
-- **Supabase Inc.:** database e accessi. Dati ospitati nell'Unione europea (Irlanda).
-- **Vercel Inc.:** hosting dell'applicazione.
-- **Anthropic PBC:** elaborazione con intelligenza artificiale.
-- **Stripe Payments Europe Ltd:** pagamenti dell'abbonamento.
-- **Resend Inc.:** invio delle email di servizio (conferma dell'account, attivazione).
+| Fornitore | Ruolo | Dove sono i dati |
+|---|---|---|
+| Supabase Inc. | Database, accessi, archivio file | Unione europea (Irlanda) |
+| Vercel Inc. | Hosting dell'applicazione | Elaborazione in UE (Dublino); società con sede negli USA |
+| Anthropic PBC | Elaborazione con intelligenza artificiale | Stati Uniti |
+| Stripe Payments Europe Ltd | Pagamenti dell'abbonamento | Irlanda / UE |
+| Resend Inc. | Email di servizio | **[da verificare: regione di invio]** |
 
-Alcuni fornitori hanno sede negli Stati Uniti. Il trasferimento avviene sulla base dell'EU-US Data Privacy Framework o delle clausole contrattuali standard. **[Da verificare per ciascun fornitore.]**
+I fornitori con sede negli Stati Uniti trattano i dati sulla base dell'EU-US Data Privacy Framework o delle clausole contrattuali standard **[verificare per ciascuno]**.
 
-### Minori
+### 5. Minori
+Il servizio è riservato a maggiorenni che lo usano per la propria attività. Le pagine dei clienti riguardano anche bevande alcoliche.
 
-Il servizio è riservato a maggiorenni che lo usano per la propria attività. I contenuti riguardano bevande alcoliche.
-
-### I tuoi diritti
-
-Valgono i diritti indicati sopra. Puoi cancellare l'account scrivendo a info@ai-som.it **[da sostituire con il pulsante "Elimina account" nell'app, obbligatorio per Apple e Google]**.
+### 6. I tuoi diritti
+Accesso, rettifica, cancellazione, limitazione, portabilità, opposizione e reclamo al Garante privacy.
+- **Cancellazione dell'account dall'app:** pulsante "Elimina account" nelle impostazioni **[da realizzare: obbligatorio per Apple (5.1.1) e Google]**.
+- Oppure scrivendo a **[email di contatto]**.
