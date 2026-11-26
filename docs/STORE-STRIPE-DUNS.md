@@ -1,6 +1,6 @@
 # Stripe, account degli store, D-U-N-S e compilazione delle app (26/11/2026)
 
-**Stato:** Apple Developer Program: iscritto come persona il 26/11/2026. Google Play: da aprire (sezione 3-bis). Stripe: configurato solo in modalità di prova (sezione 1).
+**Stato:** Apple Developer Program: iscritto come persona il 26/11/2026. D-U-N-S: ricevuto il 26/11/2026 (contatto `info@oluvida.it`, dominio attivo dallo stesso giorno). Google Play: da aprire come organizzazione (sezione 3-bis). Stripe: configurato solo in modalità di prova (sezione 1).
 
 ## 1. Prompt per configurare Stripe
 
