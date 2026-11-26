@@ -51,6 +51,8 @@ Il confronto naturale del ristoratore è con un menù QR da 10–20 €. Quindi 
 
 ## 3. Configurazione di Stripe (dalla dashboard)
 
+> Prompt aggiornato e variabili di Vercel: vedi `STORE-STRIPE-DUNS.md`, sezione 1.
+
 ### Passi
 1. **Prodotto** "AI Som — Abbonamento", con due prezzi ricorrenti in EUR:
    - **39,90 € al mese**, comportamento fiscale **IVA esclusa** ("exclusive");
