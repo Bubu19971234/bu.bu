@@ -19,7 +19,7 @@ AI Som è un servizio di Oluvida di Tinti Marco **[dati completi]**. Offre a loc
 - La prova ha limiti di utilizzo; possiamo modificarli o sospenderla in caso di abuso.
 
 ## 3. Abbonamento
-- **Prezzo:** **[da definire dopo l'analisi in PREZZO-E-STRIPE.md]**, IVA esclusa.
+- **Prezzo:** 39,90 € al mese oppure 390 € all'anno, IVA esclusa.
 - **Pagamento:** dal sito, tramite Stripe; l'abbonamento si rinnova automaticamente. Le app per iPhone e Android non vendono l'abbonamento.
 - **Disdetta:** in qualsiasi momento, con effetto alla scadenza del periodo pagato.
 - **Mancato rinnovo:** se il pagamento non va a buon fine, menù, sommelier e bartender diventano non visibili ai clienti; i dati restano nell'account.

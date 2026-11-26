@@ -42,7 +42,9 @@ Il confronto naturale del ristoratore è con un menù QR da 10–20 €. Quindi 
 | B. Due piani: "Menù" 24 € (menù con grafica e lingue) e "Sommelier" 49 € (tutto) | Entra anche chi vuole solo il menù; 49 € per chi vuole il sommelier | Più limiti da gestire; rischio che quasi tutti scelgano il piano basso |
 | C. 49 €/mese, 490 €/anno | Posiziona AI Som come strumento di vendita, non come menù | Meno conversioni all'inizio senza recensioni e casi di successo |
 
-**Raccomandazione** [Ipotesi: senza dati di conversione reali]:
+**Decisione (26/11/2026): 39,90 €/mese o 390 €/anno, IVA esclusa.**
+
+**Raccomandazione iniziale** [Ipotesi: senza dati di conversione reali]:
 - **Opzione A a 39 €/mese o 390 €/anno, IVA esclusa.** 390 vale 2 mesi gratis ed è più leggibile di 385.
 - **Prezzo "fondatori" per i primi 20 locali: 29 €/mese bloccato per 12 mesi**, in cambio di una recensione o di un caso di studio.
 - Dopo 3 mesi si guardano i dati: se più del 25% delle prove diventa abbonamento si passa a 49 € per i nuovi clienti; se meno del 10%, si valuta il piano "Menù" dell'opzione B.
@@ -51,11 +53,11 @@ Il confronto naturale del ristoratore è con un menù QR da 10–20 €. Quindi 
 
 ### Passi
 1. **Prodotto** "AI Som — Abbonamento", con due prezzi ricorrenti in EUR:
-   - **39,00 € al mese**, comportamento fiscale **IVA esclusa** ("exclusive");
+   - **39,90 € al mese**, comportamento fiscale **IVA esclusa** ("exclusive");
    - **390,00 € all'anno**, IVA esclusa.
 
    Annota i due ID `price_…`.
-2. **Codice promozionale "FONDATORI"**: coupon da 10 € di sconto al mese, durata 12 mesi, massimo 20 utilizzi. Il checkout accetta già i codici promozionali.
+2. **Codice promozionale "FONDATORI"** (facoltativo, da decidere): coupon da 10,90 € di sconto al mese (→ 29 €), durata 12 mesi, massimo 20 utilizzi. Il checkout accetta già i codici promozionali.
 3. **Stripe Tax:**
    - attivalo;
    - aggiungi la registrazione IVA italiana;
@@ -74,15 +76,15 @@ Il confronto naturale del ristoratore è con un menù QR da 10–20 €. Quindi 
    - `STRIPE_PRICE_STARTER_MONTHLY` = ID del prezzo mensile;
    - `STRIPE_PRICE_STARTER_ANNUAL` = ID del prezzo annuale;
    - `STRIPE_TAX=1` **solo dopo** il passo 3;
-   - poi aggiornare `LISTINO` in `lib/piano.ts` (oggi 35/350).
+   - `LISTINO` in `lib/piano.ts` è già aggiornato a 39,90/390.
 9. **Fatturazione elettronica:** collegare Stripe a un servizio SdI (vedi verità n. 2).
 
 ### Prompt per l'assistente della dashboard di Stripe (o per chi la configura)
 ```
 Configura il mio account Stripe per il servizio B2B "AI Som" venduto a ristoranti italiani ed europei:
 1. Crea il prodotto "AI Som — Abbonamento" con due prezzi ricorrenti in EUR, comportamento fiscale "exclusive":
-   39,00 € al mese e 390,00 € all'anno. Mostrami gli ID dei due prezzi.
-2. Crea un coupon da 10 € di sconto, durata 12 mesi, e un codice promozionale "FONDATORI" con massimo 20 utilizzi.
+   39,90 € al mese e 390,00 € all'anno. Mostrami gli ID dei due prezzi.
+2. (Facoltativo) Crea un coupon da 10,90 € di sconto, durata 12 mesi, e un codice promozionale "FONDATORI" con massimo 20 utilizzi.
 3. Attiva Stripe Tax con registrazione IVA in Italia; per le imprese UE con partita IVA valida applica l'inversione contabile.
 4. Configura il portale clienti: aggiornamento del metodo di pagamento, download fatture, disdetta a fine periodo,
    passaggio tra i due prezzi del prodotto.
