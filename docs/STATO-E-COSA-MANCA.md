@@ -16,6 +16,20 @@ Menù reale di una pizzeria: pieghevole a nove colonne, 121 piatti e 43 bevande.
 - **Idea per dopo (non sviluppata):** comande dal tavolo che arrivano in cassa, come servizio superiore a circa 550 €/anno. Il codice esiste ma è in pausa; non è nei termini di servizio.
 - **Da sistemare:** coperto e diritto di taglio non vengono letti né segnalati; «impasto gluten free» e i supplementi per l'impasto finiscono tra i piatti; «Freddi» e «Caldi» (sottotitoli) diventano descrizione del piatto.
 
+## Lavori tecnici chiusi il 27/11 (tarda sera)
+- **Prova gratuita aperta** in produzione (variabili `PROVA_APERTA` e `NEXT_PUBLIC_PROVA_APERTA` su Vercel; si richiude togliendole).
+- **Lettura del menù:** coperto letto, confermato dal ristoratore e mostrato ai clienti; «diritto di taglio» e rimandi al personale non entrano nel menù; «Freddi/Caldi» diventano sezioni. Riprova sul menù Orfeo: 120 piatti, nessun prezzo cambiato.
+- **Marginalità** resta in vendita (decisione del titolare) e ha lo stile del pannello AI Som, con guida iniziale in cinque passi.
+- **Pannello:** Anagrafica, Abbinamenti e Grafica nel nuovo stile.
+- **Copia del sito:** pulsante «Carta vini» nella barra, provato a 320 e 390 px.
+- **Password minima** di Supabase portata da 6 a 8 caratteri.
+- **Guide per gli store:** `GOOGLE-PLAY-E-APPLE-PASSI.md`.
+
+### Da sapere
+- **Limite di letture:** un locale abbonato ha 3 letture di menù o carta con l'AI al mese. Chi riprova più volte lo stesso menù lo raggiunge in fretta.
+- **Termini di servizio:** descrivono solo AI Som. Marginalità (600 €/anno o 59 €/mese) e il piano unico (800 €/anno) vanno aggiunti dal legale: finché non ci sono, si vendono servizi che il contratto non descrive.
+- **Non fatto:** file orfani nell'archivio (da qui non si possono cancellare in modo pulito) e spostamento del database in un progetto dedicato (lavoro grosso, nessuna urgenza).
+
 ## Ancora aperto
 1. ~~Stripe~~ **Chiuso il 27/11:** pagamento reale funzionante dalla produzione.
    - Prodotto «AI Som – Abbonamento» con 39,90 €/mese (`aisom_mensile`) e 390 €/anno (`aisom_annuale`); i prezzi vecchi da 35 e 350 € sono archiviati.
@@ -29,9 +43,9 @@ Menù reale di una pizzeria: pieghevole a nove colonne, 121 piatti e 43 bevande.
    - **Attività registrate:** grafica di pagine web (74.12.01, prevalente dal 05/05/2025), campagne di marketing e servizi pubblicitari (73.11.02), commercio su internet di cosmetici (47.75.00).
    - **Da chiedere al commercialista:** nessuno dei tre codici descrive la vendita di un software in abbonamento. Valutare l'aggiunta di un codice per software o servizi informatici prima di fatturare gli abbonamenti, anche per il coefficiente del forfettario.
    - **Regime forfettario (RF19)** e invio allo SdI tramite intermediario confermati dalla fattura n. 17 del 07/07/2026.
-4. **Prova gratuita:** ancora chiusa. Si apre impostando `PROVA_APERTA=1` e `NEXT_PUBLIC_PROVA_APERTA=1` quando Stripe funziona.
-5. **Apple:** in attesa della verifica dell'identità; poi i 4 segreti su GitHub per TestFlight.
-6. **Google Play:** account da aprire con il D-U-N-S 507652847.
+4. ~~Prova gratuita~~ **Aperta il 27/11.**
+5. **Apple:** account attivo. Mancano i 4 segreti su GitHub per TestFlight (`GOOGLE-PLAY-E-APPLE-PASSI.md`, sezione 2).
+6. **Google Play:** account da aprire come organizzazione con il D-U-N-S 507652847 (`GOOGLE-PLAY-E-APPLE-PASSI.md`, sezione 1).
 7. **Database condiviso:** il progetto Supabase si chiama «check-in» e ospita anche un'altra applicazione. Funziona, ma per AI Som sarebbe più pulito un progetto dedicato.
 8. **File orfani:** 3 file della copia del sito di un locale di prova cancellato restano nell'archivio `menu-clones`.
 9. **Token da revocare a lavori finiti:** Supabase, Clarity e (quando inserita) Stripe, nell'ambiente «Predefinito».
