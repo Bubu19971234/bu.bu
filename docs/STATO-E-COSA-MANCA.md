@@ -12,6 +12,8 @@
    - Prodotto «AI Som – Abbonamento» con 39,90 €/mese (`aisom_mensile`) e 390 €/anno (`aisom_annuale`); i prezzi vecchi da 35 e 350 € sono archiviati.
    - Prova dal vero: pagamento da `/attiva`, locale attivato dal webhook, account creato, email con il link per la password arrivata, accettazione dei termini v4 e delle clausole registrata. Nessun errore nei registri di Vercel.
    - Codice FONDATORI: 10 € di sconto per 12 mesi, limitato al prodotto (Stripe non consente di limitarlo a un singolo prezzo), 20 utilizzi.
+   - Pagina `/attiva` corretta dopo la prova: mostrava l'annuale preselezionato, Marginalità e il piano unico. Ora propone solo AI Som, mensile (preselezionato) e annuale affiancati. Marginalità e piano unico restano raggiungibili solo con `?piano=margini` o `?piano=combo`.
+   - **Da decidere:** Marginalità (600 €/anno, 59 €/mese) e piano unico (800 €/anno) sono ancora acquistabili, ma i termini v4 descrivono solo AI Som. O si tolgono dalla vendita o si fanno aggiungere ai termini.
    - Da fare: chiudere l'abbonamento del locale usato per la prova, se era solo una prova; provare «Abbonamento e fatture» (portale) dal pannello.
 2. ~~Piano di Vercel~~ **Chiuso:** il piano è Pro (confermato dal titolare il 27/11). L'accordo sul trattamento dei dati di Vercel si applica e l'uso commerciale è consentito. I registri tecnici durano un giorno: il testo dell'informativa lo copre già.
 3. **Visura del 28/04/2026 (documento T 649033801): dati dei testi legali confermati.** Denominazione, sede, partita IVA, REA PT-614875 e PEC oluvida@pec.it coincidono con quanto pubblicato: nessuna modifica ai testi.
