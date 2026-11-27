@@ -11,6 +11,9 @@
 Menù reale di una pizzeria: pieghevole a nove colonne, 121 piatti e 43 bevande. Lettura in 59 s, nessun prezzo sbagliato, allergeni non inventati.
 - **Corretto e pubblicato:** traduzione sei piatti alla volta e automatica dopo l'importazione (36 piatti in 28 s; prima 120 piatti in dieci minuti); ritraduzione automatica quando si corregge il testo di un piatto; logo ritagliato intero e mostrato più grande; «‹ Indietro» in tutte le schermate del pannello.
 - **Verificato, già funzionante:** allergeni indicati con simboli e legenda in fondo (15 piatti su 15; un simbolo non in legenda viene segnalato, non indovinato). Restano da confermare piatto per piatto dal titolare.
+- **Percorso del cliente rifatto e pubblicato:** il QR apre il menù (non più una domanda); carta dei vini sempre in vista; dopo il primo piatto due pulsanti affiancati, «Il tuo menù» e «Che vino ci abbino?»; il consiglio compare sotto il riepilogo solo se richiesto; il vino scelto entra nel riepilogo da mostrare al cameriere. Tolti dal menù numero del tavolo e persone: tornano con le comande.
+- **Cambio lingua:** i titoli delle sezioni non venivano tradotti; ora sì, e i menù già importati si sistemano quando il titolare apre la pagina Menù.
+- **Idea per dopo (non sviluppata):** comande dal tavolo che arrivano in cassa, come servizio superiore a circa 550 €/anno. Il codice esiste ma è in pausa; non è nei termini di servizio.
 - **Da sistemare:** coperto e diritto di taglio non vengono letti né segnalati; «impasto gluten free» e i supplementi per l'impasto finiscono tra i piatti; «Freddi» e «Caldi» (sottotitoli) diventano descrizione del piatto.
 
 ## Ancora aperto
