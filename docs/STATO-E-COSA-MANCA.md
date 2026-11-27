@@ -1,4 +1,28 @@
-# AI Som: stato e cosa manca (26/11/2026, dopo il controllo di sicurezza e il test d'uso)
+# AI Som: stato al 27/11/2026 (sera)
+
+## Fatto oggi
+- **Regole di sicurezza del database:** applicate e verificate con tre attacchi di prova, tutti respinti.
+- **Richieste del legale:** allergie non inviate al fornitore dell'AI, IP mai in chiaro, doppia accettazione dei termini (anche al pagamento diretto), esportazione dei dati, regime forfettario.
+- **Testi legali:** pubblicati su `/privacy`, `/termini`, `/accordo-dati` con i dati del Registro Imprese (sorgenti in `ai-som-saas/content/legale`).
+- **Pagina menù per iPad:** sezioni a sinistra, piatti su due colonne.
+- **Pulizia:** cancellati 8 locali di prova e 8 account; restano «Da Marco», «Locale di prova» e il dimostrativo «Kintsugi Bistrot» (`/locale/kintsugi-bistrot-demo`), attivo, tradotto in 8 lingue, con bartender.
+
+## Ancora aperto
+1. **Stripe:** i prezzi nuovi non esistono ancora in modalità reale. Nel segreto dell'ambiente è stato salvato il link della pagina delle chiavi al posto della chiave: va sostituito con la chiave `sk_live_…`. Prezzo consigliato: 39,90 €/mese e 390 €/anno di listino, più un codice «fondatori» a 29,90 € per i primi 20 locali.
+2. **Piano di Vercel:** l'accordo sul trattamento dei dati di Vercel vale solo per i piani Pro ed Enterprise, e il piano Hobby non consente l'uso commerciale. Da verificare prima di vendere.
+3. **Attività registrata:** nel documento del Registro Imprese del 2023 l'attività è «commercio su internet di creme e prodotti cosmetici». Chiedere al commercialista se va aggiunto il codice per i servizi software.
+4. **Prova gratuita:** ancora chiusa. Si apre impostando `PROVA_APERTA=1` e `NEXT_PUBLIC_PROVA_APERTA=1` quando Stripe funziona.
+5. **Apple:** in attesa della verifica dell'identità; poi i 4 segreti su GitHub per TestFlight.
+6. **Google Play:** account da aprire con il D-U-N-S 507652847.
+7. **Database condiviso:** il progetto Supabase si chiama «check-in» e ospita anche un'altra applicazione. Funziona, ma per AI Som sarebbe più pulito un progetto dedicato.
+8. **File orfani:** 3 file della copia del sito di un locale di prova cancellato restano nell'archivio `menu-clones`.
+9. **Token da revocare a lavori finiti:** Supabase, Clarity e (quando inserita) Stripe, nell'ambiente «Predefinito».
+
+---
+
+## Storico: stato del 26/11/2026
+
+### AI Som: stato e cosa manca (26/11/2026, dopo il controllo di sicurezza e il test d'uso)
 
 ## 1. Verificato oggi
 
