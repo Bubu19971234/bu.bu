@@ -8,7 +8,11 @@
 - **Pulizia:** cancellati 8 locali di prova e 8 account; restano «Da Marco», «Locale di prova» e il dimostrativo «Kintsugi Bistrot» (`/locale/kintsugi-bistrot-demo`), attivo, tradotto in 8 lingue, con bartender.
 
 ## Ancora aperto
-1. **Stripe:** i prezzi nuovi non esistono ancora in modalità reale. Nel segreto dell'ambiente è salvato un indirizzo web (inizia con `https://` e finisce con `keys`) al posto della chiave: Stripe lo rifiuta. Serve una chiave che inizia con `sk_live_` o `rk_live_`; se nella pagina di Stripe non è più visibile, va creata una chiave nuova. Prezzo consigliato: 39,90 €/mese e 390 €/anno di listino, più un codice «fondatori» a 29,90 € per i primi 20 locali.
+1. ~~Stripe~~ **Chiuso il 27/11:** pagamento reale funzionante dalla produzione.
+   - Prodotto «AI Som – Abbonamento» con 39,90 €/mese (`aisom_mensile`) e 390 €/anno (`aisom_annuale`); i prezzi vecchi da 35 e 350 € sono archiviati.
+   - Prova dal vero: pagamento da `/attiva`, locale attivato dal webhook, account creato, email con il link per la password arrivata, accettazione dei termini v4 e delle clausole registrata. Nessun errore nei registri di Vercel.
+   - Codice FONDATORI: 10 € di sconto per 12 mesi, limitato al prodotto (Stripe non consente di limitarlo a un singolo prezzo), 20 utilizzi.
+   - Da fare: chiudere l'abbonamento del locale usato per la prova, se era solo una prova; provare «Abbonamento e fatture» (portale) dal pannello.
 2. ~~Piano di Vercel~~ **Chiuso:** il piano è Pro (confermato dal titolare il 27/11). L'accordo sul trattamento dei dati di Vercel si applica e l'uso commerciale è consentito. I registri tecnici durano un giorno: il testo dell'informativa lo copre già.
 3. **Visura del 28/04/2026 (documento T 649033801): dati dei testi legali confermati.** Denominazione, sede, partita IVA, REA PT-614875 e PEC oluvida@pec.it coincidono con quanto pubblicato: nessuna modifica ai testi.
    - **Attività registrate:** grafica di pagine web (74.12.01, prevalente dal 05/05/2025), campagne di marketing e servizi pubblicitari (73.11.02), commercio su internet di cosmetici (47.75.00).
