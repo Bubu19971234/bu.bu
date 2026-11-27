@@ -9,8 +9,10 @@
 
 ## Ancora aperto
 1. **Stripe:** i prezzi nuovi non esistono ancora in modalità reale. Nel segreto dell'ambiente è stato salvato il link della pagina delle chiavi al posto della chiave: va sostituito con la chiave `sk_live_…`. Prezzo consigliato: 39,90 €/mese e 390 €/anno di listino, più un codice «fondatori» a 29,90 € per i primi 20 locali.
-2. **Piano di Vercel:** l'accordo sul trattamento dei dati di Vercel vale solo per i piani Pro ed Enterprise, e il piano Hobby non consente l'uso commerciale. Da verificare prima di vendere.
-3. **Attività registrata:** nel documento del Registro Imprese del 2023 l'attività è «commercio su internet di creme e prodotti cosmetici». Chiedere al commercialista se va aggiunto il codice per i servizi software.
+2. ~~Piano di Vercel~~ **Chiuso:** il piano è Pro (confermato dal titolare il 27/11). L'accordo sul trattamento dei dati di Vercel si applica e l'uso commerciale è consentito. I registri tecnici durano un giorno: il testo dell'informativa lo copre già.
+3. **Visura aggiornata: non trovata.** Cercata in Gmail e Drive il 27/11: l'unico documento del Registro Imprese di Oluvida è quello del 07/11/2023 (rispedito dal commercialista il 20/02/2026). Serve il PDF della visura recente.
+   - **Confermati da un documento del 2026** (fattura elettronica n. 17 del 07/07/2026): partita IVA 02075290474, sede in via Mazzini 312 a Larciano (PT), **regime forfettario (RF19)**, fatture già inviate allo SdI tramite un intermediario.
+   - **Non confermati dopo il 2023:** numero REA, PEC, attività dichiarata. Nel 2023 l'attività era «commercio su internet di creme e prodotti cosmetici»: se nella visura nuova non compare un codice per software o servizi digitali, va chiesto al commercialista di aggiungerlo.
 4. **Prova gratuita:** ancora chiusa. Si apre impostando `PROVA_APERTA=1` e `NEXT_PUBLIC_PROVA_APERTA=1` quando Stripe funziona.
 5. **Apple:** in attesa della verifica dell'identità; poi i 4 segreti su GitHub per TestFlight.
 6. **Google Play:** account da aprire con il D-U-N-S 507652847.
