@@ -8,11 +8,12 @@
 - **Pulizia:** cancellati 8 locali di prova e 8 account; restano «Da Marco», «Locale di prova» e il dimostrativo «Kintsugi Bistrot» (`/locale/kintsugi-bistrot-demo`), attivo, tradotto in 8 lingue, con bartender.
 
 ## Ancora aperto
-1. **Stripe:** i prezzi nuovi non esistono ancora in modalità reale. Nel segreto dell'ambiente è stato salvato il link della pagina delle chiavi al posto della chiave: va sostituito con la chiave `sk_live_…`. Prezzo consigliato: 39,90 €/mese e 390 €/anno di listino, più un codice «fondatori» a 29,90 € per i primi 20 locali.
+1. **Stripe:** i prezzi nuovi non esistono ancora in modalità reale. Nel segreto dell'ambiente è salvato un indirizzo web (inizia con `https://` e finisce con `keys`) al posto della chiave: Stripe lo rifiuta. Serve una chiave che inizia con `sk_live_` o `rk_live_`; se nella pagina di Stripe non è più visibile, va creata una chiave nuova. Prezzo consigliato: 39,90 €/mese e 390 €/anno di listino, più un codice «fondatori» a 29,90 € per i primi 20 locali.
 2. ~~Piano di Vercel~~ **Chiuso:** il piano è Pro (confermato dal titolare il 27/11). L'accordo sul trattamento dei dati di Vercel si applica e l'uso commerciale è consentito. I registri tecnici durano un giorno: il testo dell'informativa lo copre già.
-3. **Visura aggiornata: non trovata.** Cercata in Gmail e Drive il 27/11: l'unico documento del Registro Imprese di Oluvida è quello del 07/11/2023 (rispedito dal commercialista il 20/02/2026). Serve il PDF della visura recente.
-   - **Confermati da un documento del 2026** (fattura elettronica n. 17 del 07/07/2026): partita IVA 02075290474, sede in via Mazzini 312 a Larciano (PT), **regime forfettario (RF19)**, fatture già inviate allo SdI tramite un intermediario.
-   - **Non confermati dopo il 2023:** numero REA, PEC, attività dichiarata. Nel 2023 l'attività era «commercio su internet di creme e prodotti cosmetici»: se nella visura nuova non compare un codice per software o servizi digitali, va chiesto al commercialista di aggiungerlo.
+3. **Visura del 28/04/2026 (documento T 649033801): dati dei testi legali confermati.** Denominazione, sede, partita IVA, REA PT-614875 e PEC oluvida@pec.it coincidono con quanto pubblicato: nessuna modifica ai testi.
+   - **Attività registrate:** grafica di pagine web (74.12.01, prevalente dal 05/05/2025), campagne di marketing e servizi pubblicitari (73.11.02), commercio su internet di cosmetici (47.75.00).
+   - **Da chiedere al commercialista:** nessuno dei tre codici descrive la vendita di un software in abbonamento. Valutare l'aggiunta di un codice per software o servizi informatici prima di fatturare gli abbonamenti, anche per il coefficiente del forfettario.
+   - **Regime forfettario (RF19)** e invio allo SdI tramite intermediario confermati dalla fattura n. 17 del 07/07/2026.
 4. **Prova gratuita:** ancora chiusa. Si apre impostando `PROVA_APERTA=1` e `NEXT_PUBLIC_PROVA_APERTA=1` quando Stripe funziona.
 5. **Apple:** in attesa della verifica dell'identità; poi i 4 segreti su GitHub per TestFlight.
 6. **Google Play:** account da aprire con il D-U-N-S 507652847.
