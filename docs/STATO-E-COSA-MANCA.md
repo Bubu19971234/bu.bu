@@ -7,6 +7,12 @@
 - **Pagina menù per iPad:** sezioni a sinistra, piatti su due colonne.
 - **Pulizia:** cancellati 8 locali di prova e 8 account; restano «Da Marco», «Locale di prova» e il dimostrativo «Kintsugi Bistrot» (`/locale/kintsugi-bistrot-demo`), attivo, tradotto in 8 lingue, con bartender.
 
+## Prova dal vero con il menù Orfeo (27/11, sera)
+Menù reale di una pizzeria: pieghevole a nove colonne, 121 piatti e 43 bevande. Lettura in 59 s, nessun prezzo sbagliato, allergeni non inventati.
+- **Corretto e pubblicato:** traduzione sei piatti alla volta e automatica dopo l'importazione (36 piatti in 28 s; prima 120 piatti in dieci minuti); ritraduzione automatica quando si corregge il testo di un piatto; logo ritagliato intero e mostrato più grande; «‹ Indietro» in tutte le schermate del pannello.
+- **Verificato, già funzionante:** allergeni indicati con simboli e legenda in fondo (15 piatti su 15; un simbolo non in legenda viene segnalato, non indovinato). Restano da confermare piatto per piatto dal titolare.
+- **Da sistemare:** coperto e diritto di taglio non vengono letti né segnalati; «impasto gluten free» e i supplementi per l'impasto finiscono tra i piatti; «Freddi» e «Caldi» (sottotitoli) diventano descrizione del piatto.
+
 ## Ancora aperto
 1. ~~Stripe~~ **Chiuso il 27/11:** pagamento reale funzionante dalla produzione.
    - Prodotto «AI Som – Abbonamento» con 39,90 €/mese (`aisom_mensile`) e 390 €/anno (`aisom_annuale`); i prezzi vecchi da 35 e 350 € sono archiviati.
